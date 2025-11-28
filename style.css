@@ -84,7 +84,7 @@ footer {
 
 /* Global container for the “Available On” section */
 .stores-global {
-  margin: 3rem auto 2.2rem;      /* Balanced spacing above and below */
+  margin: 4rem auto 1.4rem;      /* Balanced spacing above and below */
   text-align: center;
   max-width: 800px;              /* Same visual width as main content */
 }
