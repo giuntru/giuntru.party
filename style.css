@@ -102,12 +102,13 @@ footer {
   margin-bottom: 1rem;           /* Slight space before icon rows */
 }
 
-
 .stores-rows img {
   display: block;
-  height: 40px;         /* Fixed row height → identical icon size */
-  width: auto;          /* Prevent stretching */
-  margin: 0.4rem auto;  /* Center each row, small vertical gap */
+  height: 30px;              /* Smaller icons */
+  width: auto;               /* Prevent stretching */
+  margin: 0.4rem auto;       /* Center horizontally */
+  margin-left: auto;         /* Explicit horizontal centering */
+  margin-right: auto;
 }
 
 /* Soft divider line before the global store section */
