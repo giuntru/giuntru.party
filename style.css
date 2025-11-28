@@ -64,7 +64,7 @@ a.btn {
 }
 
 footer {
-  margin-top: 3rem;              /* Balanced space above footer */
+  margin-top: 2rem;              /* Balanced space above footer */
   text-align: center;
   padding: 2rem 1rem;
   color: #7788aa;
@@ -106,3 +106,12 @@ footer {
   height: auto;
   margin: 0.4rem auto;           /* Small gap between the two rows */
 }
+
+/* Soft divider line before the global store section */
+.separator {
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08); /* Very subtle line */
+  margin: 3rem auto 2rem;
+  max-width: 600px; /* Keeps it elegant, not full width */
+}
+
