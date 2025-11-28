@@ -37,9 +37,14 @@ main {
 }
 
 .album h3 {
-  margin-top: 2.4rem;     
-  margin-bottom: 0.8rem;  
+  margin-top: 1.4rem;      
+  margin-bottom: 0.8rem;
 }
+
+.album h3:first-of-type {
+  margin-top: 2.4rem;
+}
+
 
 ol {
   padding-left: 1.2rem;
