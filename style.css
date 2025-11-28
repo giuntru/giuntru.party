@@ -111,7 +111,7 @@ footer {
 .separator {
   border: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08); /* Very subtle line */
-  margin: 4rem auto 1rem;
+  margin: 5rem auto 1rem;
   max-width: 600px; /* Keeps it elegant, not full width */
 }
 
