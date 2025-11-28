@@ -105,7 +105,7 @@ footer {
 
 .stores-rows img {
   display: block;
-  height: 60px;         /* Fixed row height → identical icon size */
+  height: 40px;         /* Fixed row height → identical icon size */
   width: auto;          /* Prevent stretching */
   margin: 0.4rem auto;  /* Center each row, small vertical gap */
 }
