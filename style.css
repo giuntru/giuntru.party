@@ -104,11 +104,24 @@ footer {
 
 .stores-rows img {
   display: block;
-  height: 30px;              /* Smaller icons */
-  width: auto;               /* Prevent stretching */
+  height: 30px;              /* Desktop size */
+  width: auto;               /* Keep aspect ratio */
   margin: 0.4rem auto;       /* Center horizontally */
-  margin-left: auto;         /* Explicit horizontal centering */
-  margin-right: auto;
+}
+
+/* Adjust store icons for small screens */
+@media (max-width: 600px) {
+  .stores-rows img {
+    height: 22px;            /* Smaller icons on mobile */
+    width: auto;             /* Keep aspect ratio */
+    max-width: 90vw;         /* Never wider than the viewport */
+    margin: 0.35rem auto;    /* Keep rows centered */
+  }
+
+  .stores-global {
+    margin-top: 2.5rem;      /* Slightly tighter spacing above */
+    margin-bottom: 1.4rem;   /* Slightly tighter spacing below */
+  }
 }
 
 /* Soft divider line before the global store section */
