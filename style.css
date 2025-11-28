@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #050810;
+  color: #f0f4ff;
+}
+
+header {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: linear-gradient(to bottom, #0a1324, #050810);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.4rem;
+  letter-spacing: 0.05em;
+  color: #cfe0ff;
+}
+
+header p {
+  margin: 0.3rem 0 0;
+  color: #b2c4ff;
+}
+
+main {
+  max-width: 800px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+}
+
+.album h2 {
+  font-size: 1.8rem;
+  color: #cfe0ff;
+}
+
+ol {
+  padding-left: 1.2rem;
+}
+
+a.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.4rem;
+  background: #cfe0ff;
+  color: #050810;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+footer {
+  margin-top: 4rem;
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #7788aa;
+  font-size: 0.9rem;
+}
