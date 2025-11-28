@@ -80,3 +80,29 @@ footer {
   box-shadow: 0 14px 30px rgba(0,0,0,0.45);
 }
 
+.stores-global {
+  margin: 4rem auto 3rem;
+  text-align: center;
+  max-width: 700px;
+}
+
+.stores-title {
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #b9c7ff;
+  margin-bottom: 1.2rem;
+}
+
+.stores-rows img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 0.5rem;
+}
+
+.stores-rows img:last-child {
+  margin-bottom: 0;
+}
+
+
