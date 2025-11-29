@@ -31,9 +31,21 @@ header p {
 }
 
 main {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 2.5rem auto;
   padding: 0 1.5rem;
+}
+
+.albums {
+  display: grid;
+  gap: 5rem;
+  align-items: flex-start;
+  justify-items: center;              
+  justify-content: center;            
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(260px, 320px)              
+  );
 }
 
 .album h2 {
