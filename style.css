@@ -14,6 +14,12 @@ header {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.header-inner {
+  max-width: 1000px;    
+  margin: 0 auto;
+  padding: 0 1.5rem;    
+}
+
 header h1 {
   margin: 0;
   font-size: 2.4rem;
@@ -94,7 +100,7 @@ footer {
 .album-cover {
   display: block;
   width: 260px;        
-  max-width: 90%;      
+  max-width: 87%;      
   height: auto;
   margin: 1.2rem 0 1.6rem;
   border-radius: 12px;
@@ -139,11 +145,36 @@ footer {
   }
 }
 
+@media (min-width: 700px) {
+  .albums {
+    transform: translateX(3%);   
+  }
+}
+
+
+
 /* Soft divider line before the global store section */
 .separator {
   border: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08); /* Very subtle line */
   margin: 5rem auto 1rem;
   max-width: 600px; /* Keeps it elegant, not full width */
+}
+
+.listen-inline {
+  margin: 0.6rem 0 2rem;   
+  margin-bottom: 2.2rem;       
+  color: #b9c7ff;
+  line-height: 1.5; 
+  max-width: 270px;             
+}
+
+.listen-inline a {
+  color: #b9c7ff;
+  text-decoration: none;
+}
+
+.listen-inline a:hover {
+  text-decoration: underline;
 }
 
