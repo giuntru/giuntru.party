@@ -149,10 +149,6 @@ footer {
   .albums {
     transform: translateX(3%);   
   }
-  
-  .listen-inline a {
-    text-decoration: underline;
-  }
 }
 
 
@@ -176,11 +172,9 @@ footer {
 .listen-inline a {
   color: #b9c7ff;
   text-decoration: none;
-  text-decoration-color: rgba(185, 199, 255, 0.4);
 }
 
 .listen-inline a:hover {
   text-decoration: underline;
-  text-decoration-color: rgba(185, 199, 255, 1);
 }
 
