@@ -44,7 +44,7 @@ main {
 
 .albums {
   display: grid;
-  gap: 5rem;
+  gap: 3rem;
   align-items: flex-start;
   justify-items: center;              
   justify-content: center;            
@@ -158,6 +158,11 @@ footer {
   }
 }
 
+@media (min-width: 1400px) {
+  main {
+    max-width: 1600px;
+  }
+}
 
 
 /* Soft divider line before the global store section */
