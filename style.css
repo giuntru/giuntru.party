@@ -44,7 +44,7 @@ main {
 
 .albums {
   display: grid;
-  gap: 3rem;
+  gap: 4rem;
   align-items: flex-start;
   justify-items: center;              
   justify-content: center;            
