@@ -554,3 +554,14 @@ footer {
     font-size: 1.8rem;
   }
 }
+
+
+
+
+html {
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
+}
+
+
+
