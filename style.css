@@ -9,9 +9,8 @@ body {
 
 header {
   text-align: center;
-  padding: 3rem 1rem;
+  padding: 3rem 1rem 2.6rem; /* meno spazio sotto il titolo */
   background: linear-gradient(to bottom, #0a1324, #050810);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .header-inner {
@@ -38,7 +37,7 @@ header p {
 
 main {
   max-width: 1200px;
-  margin: 2.5rem auto;
+  margin: 0.6rem auto 2.5rem;
   padding: 0 1.5rem;
 }
 
@@ -190,3 +189,368 @@ footer {
   text-decoration: underline;
 }
 
+
+
+.main-nav {
+  margin-top: 2.2rem;
+  padding: 1.2rem 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+
+.main-nav a {
+  color: #b2c4ff;
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity .25s ease;
+}
+
+.main-nav a:hover {
+  opacity: 1;
+}
+
+.main-nav a.active {
+  color: #cfe0ff;
+  opacity: 1;
+}
+
+.main-nav span.active {
+  color: #cfe0ff;
+  opacity: 1;
+  cursor: default;
+}
+
+.step{
+  display:inline-block;
+  width:1.0rem;          
+  margin-right:0.4rem; 
+  color: rgba(207, 224, 255, 0.55);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+
+
+.step::after{
+  content: ".";
+  margin-right:0.25rem;
+}
+
+
+
+
+
+
+
+
+
+/* =========================
+   Concept page (scoped)
+   ========================= */
+
+
+
+/* Page container: keep content centered and calm */
+.page {
+  max-width: 820px;
+  margin: 1.6rem auto 2.5rem;
+  padding: 0 1.5rem;
+}
+
+/* Blocks: ensure sections don't stretch full width visually */
+.block {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Typography hierarchy: less "white", more depth */
+.block h2 {
+  font-size: 1.8rem;
+  color: #cfe0ff;
+  margin: 0 0 0.8rem;
+  letter-spacing: 0.02em;
+}
+
+.block h3 {
+  font-size: 1.4rem;
+  color: #cfe0ff;
+  margin: 0 0 0.7rem;
+  letter-spacing: 0.02em;
+}
+
+.block h4 {
+  font-size: 1.05rem;
+  color: #cfe0ff;
+  margin: 0 0 0.35rem;
+}
+
+/* Lead paragraph: slightly softer */
+.lead {
+  margin: 0;
+  color: rgba(240, 244, 255, 0.88);
+  line-height: 1.75;
+}
+
+/* Section separators: thin, short, subtle */
+.section-sep {
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  margin: 2.4rem auto;
+  max-width: 520px;
+}
+
+/* Arc layout: keep items centered and breathable */
+.arc {
+  display: grid;
+  gap: 1.4rem;
+  margin-top: 2.0rem;
+}
+
+@media (min-width: 900px) {
+  .arc {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.8rem 2.2rem;
+  }
+}
+
+.arc-item {
+  padding: 0;
+}
+
+.arc-item p {
+  margin: 0;
+  color: rgba(240, 244, 255, 0.86);
+  line-height: 1.7;
+}
+
+/* Elements: reduce "list" feeling */
+.elements {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1.1rem;
+}
+
+.element {
+  display: flex;
+  gap: 0.65rem;
+  align-items: baseline;
+  color: rgba(240, 244, 255, 0.86);
+}
+
+.element strong {
+  color: #cfe0ff;
+  letter-spacing: 0.02em;
+}
+
+/* AI grid: same calm */
+.ai-grid {
+  display: grid;
+  gap: 1.4rem;
+  margin-top: 2.2rem;
+}
+
+@media (min-width: 820px) {
+  .ai-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+.ai-col ul {
+  margin: 0.6rem 0 0;
+  padding-left: 1.15rem;
+  color: rgba(240, 244, 255, 0.86);
+}
+
+.note {
+  margin-top: 1.1rem;
+  color: rgba(240, 244, 255, 0.78);
+  line-height: 1.7;
+}
+
+
+/* Concept page: shift the whole content column slightly to the right */
+.page.page-concept {
+  max-width: 1000px; /* keep the same rhythm as the header */
+  margin: 1.6rem auto 2.5rem;
+  padding: 0 1.5rem;
+}
+
+
+/* Shared alignment value for the Concept column */
+.page.page-concept {
+  --concept-shift: 2.2rem;
+  --concept-width: 740px;
+}
+
+.page.page-concept .block {
+  max-width: var(--concept-width);
+  margin: 0 auto;
+  padding-left: var(--concept-shift);
+}
+
+.page.page-concept .section-sep {
+  max-width: var(--concept-width);
+  margin: 2.4rem auto;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-left: var(--concept-shift);
+  box-sizing: border-box;
+}
+
+/* Subtle divider before the footer */
+.footer-sep {
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  max-width: 480px;     /* Shorter than section separators */
+  margin: 3.6rem auto 1.2rem;
+}
+
+.page.page-concept ~ .footer-concept,
+.page.page-author  ~ .footer-concept {
+  margin-top: 0;
+  padding: 0.7rem 1rem 1.8rem;
+}
+
+.page.page-author .block:last-of-type p:last-child {
+  margin-bottom: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   Author page (scoped)
+   ========================= */
+
+/* Keep the same rhythm as Concept, but slightly more "human" */
+.page.page-author {
+  max-width: 1000px;
+  margin: 1.6rem auto 2.5rem;
+  padding: 0 1.5rem;
+
+  /* Optional: reuse the same alignment variables if you like */
+  --author-shift: 2.2rem;
+  --author-width: 740px;
+}
+
+.page.page-author .block {
+  max-width: var(--author-width);
+  margin: 0 auto;
+  padding-left: var(--author-shift);
+}
+
+/* Make the separators match the author column */
+.page.page-author .section-sep {
+  max-width: var(--author-width);
+  margin: 2.4rem auto;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  box-sizing: border-box;
+}
+
+/* Logo / mark */
+.author-mark {
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 1.2rem 0 1.4rem;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.42);
+  outline: 1px solid rgba(120, 130, 150, 0.18);
+  outline-offset: -1px;
+}
+
+/* Tighten paragraphs just a touch for readability */
+.page.page-author p {
+  color: rgba(240, 244, 255, 0.86);
+  line-height: 1.75;
+  margin: 0 0 1.1rem;
+}
+
+/* Lead paragraph styling (reuse existing .lead if present) */
+.page.page-author .lead {
+  color: rgba(240, 244, 255, 0.88);
+}
+
+/* Optional: a smaller secondary line under the title */
+.author-sub {
+  margin: 0.4rem 0 0;
+  color: rgba(178, 196, 255, 0.75);
+  letter-spacing: 0.04em;
+}
+
+/* Mobile: remove the shift to avoid wasted space */
+@media (max-width: 600px) {
+  .page.page-author {
+    --author-shift: 0rem;
+    --author-width: 720px;
+  }
+
+  .author-mark {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+
+/* Author header row: logo + name/role */
+.page.page-author .author-head {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin: 0.2rem 0 3.2rem; /* Space before the lead paragraph */
+}
+
+/* Reuse the same mark, but remove bottom margin since layout handles it */
+.page.page-author .author-mark {
+  margin: 0; /* Override previous margins in the horizontal layout */
+}
+
+/* Name + role stack */
+.page.page-author .author-meta h2 {
+  margin: 0;
+  font-size: 2rem;
+  color: #cfe0ff;
+  letter-spacing: 0.02em;
+}
+
+.page.page-author .author-role {
+  margin: 0.25rem 0 0;
+  color: rgba(178, 196, 255, 0.7);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+/* Mobile: allow wrapping nicely */
+@media (max-width: 600px) {
+  .page.page-author .author-head {
+    gap: 1rem;
+  }
+
+  .page.page-author .author-meta h2 {
+    font-size: 1.8rem;
+  }
+}
