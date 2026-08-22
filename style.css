@@ -593,6 +593,8 @@ html {
 }
 
 .page.page-concept .section-sep,
-.page.page-author .section-sep {
+.page.page-author .section-sep,
+.footer-sep,
+.separator {
   border-top-color: rgba(185, 199, 255, 0.18);
 }
