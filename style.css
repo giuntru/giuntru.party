@@ -35,6 +35,8 @@ header p {
   text-transform: none;
 }
 
+
+
 main {
   max-width: 1200px;
   margin: 0.6rem auto 2.5rem;
@@ -582,4 +584,15 @@ html {
 
   opacity: 0.9;
   filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
+}
+
+/* Horizontal separators */
+.main-nav {
+  border-top-color: rgba(185, 199, 255, 0.18);
+  border-bottom-color: rgba(185, 199, 255, 0.18);
+}
+
+.page.page-concept .section-sep,
+.page.page-author .section-sep {
+  border-top-color: rgba(185, 199, 255, 0.18);
 }
