@@ -836,6 +836,18 @@ button.track-control:focus-visible {
 }
 
 
+/* Touch controls stay discoverable without hover, at any screen width. */
+@media (hover: none) and (pointer: coarse) {
+  .track-row.playable .track-number {
+    display: none;
+  }
+
+  .track-row.playable:not(.playing) .track-play {
+    display: block;
+  }
+}
+
+
 /* =========================
    Playing state
    ========================= */
