@@ -70,11 +70,24 @@
           
 
         
-        <h3>Tracklist</h3>
+        <div class="tracklist-header">
+          <h3>Tracklist</h3>
+          <div class="album-playback">
+            <div class="album-modes" role="radiogroup" aria-label="Playback mode">
+              <button class="album-mode" type="button" role="radio" data-mode="single" aria-checked="true" tabindex="0" aria-label="One track" title="One track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 8 6-8 6Z"/><path d="m16 10 2.5-2v8m-2.5 0h5"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="repeat-one" aria-checked="false" tabindex="-1" aria-label="Repeat track" title="Repeat track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 3 4 4-4 4M3 11V9a2 2 0 0 1 2-2h16M7 21l-4-4 4-4m14 0v2a2 2 0 0 1-2 2H3"/><path class="repeat-one-number" d="m10.25 10.75 1.75-1.25v5m-1.75 0h3.5"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="album" aria-checked="false" tabindex="-1" aria-label="Album once" title="Album once"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 7 6-7 6Zm11 1h7m-7 5h7m-7 5h7"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="repeat-all" aria-checked="false" tabindex="-1" aria-label="Repeat album" title="Repeat album"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 3 4 4-4 4M3 11V9a2 2 0 0 1 2-2h16M7 21l-4-4 4-4m14 0v2a2 2 0 0 1-2 2H3"/></svg></button>
+            </div>
+            <button class="album-shuffle" type="button" disabled aria-label="Shuffle album" aria-pressed="false" title="Shuffle album">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h3c5 0 7 12 12 12h3m-4-4 4 4-4 4M3 18h3c2 0 3-2 4-4m4-4c1-2 2-4 4-4h3m-4-4 4 4-4 4"/></svg>
+            </button>
+          </div>
+        </div>
 
         <div class="tracklist">
 
-          <div class="track-row playable" data-src="audio/Living Shape/01 - Still Moving.mp3">
+          <div class="track-row playable" data-src="audio/Living Shape/01 - Still Moving.mp3" data-lyrics-sync="audio/Living Shape/01 - Still Moving.lrc">
             <button class="track-control" type="button" aria-label="Play Still Moving">
               <span class="track-number">1</span>
 
@@ -100,7 +113,7 @@
           </div>
 
 
-          <div class="track-row playable" data-src="audio/Living Shape/02 - After the Dark.mp3">
+          <div class="track-row playable" data-src="audio/Living Shape/02 - After the Dark.mp3" data-lyrics-sync="audio/Living Shape/02 - After the Dark.lrc">
             <button class="track-control" type="button" aria-label="Play After The Dark">
               <span class="track-number">2</span>
 
@@ -126,7 +139,7 @@
           </div>
 
 
-          <div class="track-row playable" data-src="audio/Living Shape/03 - The Shape It Chose.mp3">
+          <div class="track-row playable" data-src="audio/Living Shape/03 - The Shape It Chose.mp3" data-lyrics-sync="audio/Living Shape/03 - The Shape It Chose.lrc">
             <button class="track-control" type="button" aria-label="Play The Shape It Chose">
               <span class="track-number">3</span>
 
@@ -152,7 +165,7 @@
           </div>
 
 
-          <div class="track-row playable" data-src="audio/Living Shape/04 - Gentle Gravity.mp3">
+          <div class="track-row playable" data-src="audio/Living Shape/04 - Gentle Gravity.mp3" data-lyrics-sync="audio/Living Shape/04 - Gentle Gravity.lrc">
             <button class="track-control" type="button" aria-label="Play Gentle Gravity">
               <span class="track-number">4</span>
 
@@ -178,7 +191,7 @@
           </div>
 
 
-          <div class="track-row playable" data-src="audio/Living Shape/05 - Living Shape.mp3">
+          <div class="track-row playable" data-src="audio/Living Shape/05 - Living Shape.mp3" data-lyrics-sync="audio/Living Shape/05 - Living Shape.lrc">
             <button class="track-control" type="button" aria-label="Play Living Shape">
               <span class="track-number">5</span>
 
@@ -204,7 +217,7 @@
           </div>
 
 
-          <div class="track-row playable" data-src="audio/Living Shape/06 - That Is What Light Does.mp3">
+          <div class="track-row playable" data-src="audio/Living Shape/06 - That Is What Light Does.mp3" data-lyrics-sync="audio/Living Shape/06 - That Is What Light Does.lrc">
             <button class="track-control" type="button" aria-label="Play That Is What Light Does">
               <span class="track-number">6</span>
 
@@ -230,7 +243,7 @@
           </div>
 
 
-          <div class="track-row playable" data-src="audio/Living Shape/07 - It Moved With Me.mp3">
+          <div class="track-row playable" data-src="audio/Living Shape/07 - It Moved With Me.mp3" data-lyrics-sync="audio/Living Shape/07 - It Moved With Me.lrc">
             <button class="track-control" type="button" aria-label="Play It Moved With Me">
               <span class="track-number">7</span>
 
@@ -256,7 +269,7 @@
           </div>
 
 
-          <div class="track-row playable" data-src="audio/Living Shape/08 - Body of Light.mp3">
+          <div class="track-row playable" data-src="audio/Living Shape/08 - Body of Light.mp3" data-lyrics-sync="audio/Living Shape/08 - Body of Light.lrc">
             <button class="track-control" type="button" aria-label="Play Body Of Light">
               <span class="track-number">8</span>
 
@@ -323,10 +336,23 @@
         <a target="_blank">Pandora (US)</a>
       </p>
         
-      <h3>Tracklist</h3>
+      <div class="tracklist-header">
+          <h3>Tracklist</h3>
+          <div class="album-playback">
+            <div class="album-modes" role="radiogroup" aria-label="Playback mode">
+              <button class="album-mode" type="button" role="radio" data-mode="single" aria-checked="true" tabindex="0" aria-label="One track" title="One track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 8 6-8 6Z"/><path d="m16 10 2.5-2v8m-2.5 0h5"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="repeat-one" aria-checked="false" tabindex="-1" aria-label="Repeat track" title="Repeat track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 3 4 4-4 4M3 11V9a2 2 0 0 1 2-2h16M7 21l-4-4 4-4m14 0v2a2 2 0 0 1-2 2H3"/><path class="repeat-one-number" d="m10.25 10.75 1.75-1.25v5m-1.75 0h3.5"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="album" aria-checked="false" tabindex="-1" aria-label="Album once" title="Album once"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 7 6-7 6Zm11 1h7m-7 5h7m-7 5h7"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="repeat-all" aria-checked="false" tabindex="-1" aria-label="Repeat album" title="Repeat album"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 3 4 4-4 4M3 11V9a2 2 0 0 1 2-2h16M7 21l-4-4 4-4m14 0v2a2 2 0 0 1-2 2H3"/></svg></button>
+            </div>
+            <button class="album-shuffle" type="button" disabled aria-label="Shuffle album" aria-pressed="false" title="Shuffle album">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h3c5 0 7 12 12 12h3m-4-4 4 4-4 4M3 18h3c2 0 3-2 4-4m4-4c1-2 2-4 4-4h3m-4-4 4 4-4 4"/></svg>
+            </button>
+          </div>
+        </div>
       <div class="tracklist">
 
-          <div class="track-row playable" data-src="audio/Portable Silence/01 - The World Grew Quiet.mp3">
+          <div class="track-row playable" data-src="audio/Portable Silence/01 - The World Grew Quiet.mp3" data-lyrics-sync="audio/Portable Silence/01 - The World Grew Quiet.lrc">
             <button class="track-control" type="button" aria-label="Play The World Grew Quiet">
               <span class="track-number">1</span>
 
@@ -351,7 +377,7 @@
             <span class="track-duration">2:52</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Portable Silence/02 - A Beautiful Chance.mp3">
+          <div class="track-row playable" data-src="audio/Portable Silence/02 - A Beautiful Chance.mp3" data-lyrics-sync="audio/Portable Silence/02 - A Beautiful Chance.lrc">
             <button class="track-control" type="button" aria-label="Play A Beautiful Chance">
               <span class="track-number">2</span>
 
@@ -376,7 +402,7 @@
             <span class="track-duration">3:21</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Portable Silence/03 - Rare, Clear, Unforced.mp3">
+          <div class="track-row playable" data-src="audio/Portable Silence/03 - Rare, Clear, Unforced.mp3" data-lyrics-sync="audio/Portable Silence/03 - Rare, Clear, Unforced.lrc">
             <button class="track-control" type="button" aria-label="Play Rare, Clear, Unforced">
               <span class="track-number">3</span>
 
@@ -401,7 +427,7 @@
             <span class="track-duration">2:44</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Portable Silence/04 - Between The Words.mp3">
+          <div class="track-row playable" data-src="audio/Portable Silence/04 - Between The Words.mp3" data-lyrics-sync="audio/Portable Silence/04 - Between The Words.lrc">
             <button class="track-control" type="button" aria-label="Play Between the Words">
               <span class="track-number">4</span>
 
@@ -426,7 +452,7 @@
             <span class="track-duration">3:05</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Portable Silence/05 - Portable Silence.mp3">
+          <div class="track-row playable" data-src="audio/Portable Silence/05 - Portable Silence.mp3" data-lyrics-sync="audio/Portable Silence/05 - Portable Silence.lrc">
             <button class="track-control" type="button" aria-label="Play Portable Silence">
               <span class="track-number">5</span>
 
@@ -451,7 +477,7 @@
             <span class="track-duration">3:23</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Portable Silence/06 - The Shape of Light.mp3">
+          <div class="track-row playable" data-src="audio/Portable Silence/06 - The Shape of Light.mp3" data-lyrics-sync="audio/Portable Silence/06 - The Shape of Light.lrc">
             <button class="track-control" type="button" aria-label="Play The Shape of Light">
               <span class="track-number">6</span>
 
@@ -476,7 +502,7 @@
             <span class="track-duration">2:38</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Portable Silence/07 - One Heartbeat Away.mp3">
+          <div class="track-row playable" data-src="audio/Portable Silence/07 - One Heartbeat Away.mp3" data-lyrics-sync="audio/Portable Silence/07 - One Heartbeat Away.lrc">
             <button class="track-control" type="button" aria-label="Play One Heartbeat Away">
               <span class="track-number">7</span>
 
@@ -540,10 +566,23 @@
         <a href="https://www.pandora.com/artist/giuntru/5/AL63lXwVx2Jw396" target="_blank">Pandora (US)</a>
       </p>
         
-      <h3>Tracklist</h3>
+      <div class="tracklist-header">
+          <h3>Tracklist</h3>
+          <div class="album-playback">
+            <div class="album-modes" role="radiogroup" aria-label="Playback mode">
+              <button class="album-mode" type="button" role="radio" data-mode="single" aria-checked="true" tabindex="0" aria-label="One track" title="One track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 8 6-8 6Z"/><path d="m16 10 2.5-2v8m-2.5 0h5"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="repeat-one" aria-checked="false" tabindex="-1" aria-label="Repeat track" title="Repeat track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 3 4 4-4 4M3 11V9a2 2 0 0 1 2-2h16M7 21l-4-4 4-4m14 0v2a2 2 0 0 1-2 2H3"/><path class="repeat-one-number" d="m10.25 10.75 1.75-1.25v5m-1.75 0h3.5"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="album" aria-checked="false" tabindex="-1" aria-label="Album once" title="Album once"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 7 6-7 6Zm11 1h7m-7 5h7m-7 5h7"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="repeat-all" aria-checked="false" tabindex="-1" aria-label="Repeat album" title="Repeat album"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 3 4 4-4 4M3 11V9a2 2 0 0 1 2-2h16M7 21l-4-4 4-4m14 0v2a2 2 0 0 1-2 2H3"/></svg></button>
+            </div>
+            <button class="album-shuffle" type="button" disabled aria-label="Shuffle album" aria-pressed="false" title="Shuffle album">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h3c5 0 7 12 12 12h3m-4-4 4 4-4 4M3 18h3c2 0 3-2 4-4m4-4c1-2 2-4 4-4h3m-4-4 4 4-4 4"/></svg>
+            </button>
+          </div>
+        </div>
       <div class="tracklist">
 
-          <div class="track-row playable" data-src="audio/Five/01 - I Didn’t Mean to Smile.mp3">
+          <div class="track-row playable" data-src="audio/Five/01 - I Didn’t Mean to Smile.mp3" data-lyrics-sync="audio/Five/01 - I Didn’t Mean to Smile.lrc">
             <button class="track-control" type="button" aria-label="Play I Didn’t Mean To Smile">
               <span class="track-number">1</span>
 
@@ -568,7 +607,7 @@
             <span class="track-duration">1:56</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Five/02 - Almost Touching.mp3">
+          <div class="track-row playable" data-src="audio/Five/02 - Almost Touching.mp3" data-lyrics-sync="audio/Five/02 - Almost Touching.lrc">
             <button class="track-control" type="button" aria-label="Play Almost Touching">
               <span class="track-number">2</span>
 
@@ -593,7 +632,7 @@
             <span class="track-duration">1:40</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Five/03 - Safe to Fall.mp3">
+          <div class="track-row playable" data-src="audio/Five/03 - Safe to Fall.mp3" data-lyrics-sync="audio/Five/03 - Safe to Fall.lrc">
             <button class="track-control" type="button" aria-label="Play Safe To Fall">
               <span class="track-number">3</span>
 
@@ -618,7 +657,7 @@
             <span class="track-duration">2:07</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Five/04 - We Breathe Wider.mp3">
+          <div class="track-row playable" data-src="audio/Five/04 - We Breathe Wider.mp3" data-lyrics-sync="audio/Five/04 - We Breathe Wider.lrc">
             <button class="track-control" type="button" aria-label="Play We Breathe Wider">
               <span class="track-number">4</span>
 
@@ -643,7 +682,7 @@
             <span class="track-duration">2:49</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Five/05 - Where We Melt.mp3">
+          <div class="track-row playable" data-src="audio/Five/05 - Where We Melt.mp3" data-lyrics-sync="audio/Five/05 - Where We Melt.lrc">
             <button class="track-control" type="button" aria-label="Play Where We Melt">
               <span class="track-number">5</span>
 
@@ -707,10 +746,23 @@
 
 
 
-      <h3>Tracklist</h3>
+      <div class="tracklist-header">
+          <h3>Tracklist</h3>
+          <div class="album-playback">
+            <div class="album-modes" role="radiogroup" aria-label="Playback mode">
+              <button class="album-mode" type="button" role="radio" data-mode="single" aria-checked="true" tabindex="0" aria-label="One track" title="One track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 8 6-8 6Z"/><path d="m16 10 2.5-2v8m-2.5 0h5"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="repeat-one" aria-checked="false" tabindex="-1" aria-label="Repeat track" title="Repeat track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 3 4 4-4 4M3 11V9a2 2 0 0 1 2-2h16M7 21l-4-4 4-4m14 0v2a2 2 0 0 1-2 2H3"/><path class="repeat-one-number" d="m10.25 10.75 1.75-1.25v5m-1.75 0h3.5"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="album" aria-checked="false" tabindex="-1" aria-label="Album once" title="Album once"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 7 6-7 6Zm11 1h7m-7 5h7m-7 5h7"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="repeat-all" aria-checked="false" tabindex="-1" aria-label="Repeat album" title="Repeat album"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 3 4 4-4 4M3 11V9a2 2 0 0 1 2-2h16M7 21l-4-4 4-4m14 0v2a2 2 0 0 1-2 2H3"/></svg></button>
+            </div>
+            <button class="album-shuffle" type="button" disabled aria-label="Shuffle album" aria-pressed="false" title="Shuffle album">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h3c5 0 7 12 12 12h3m-4-4 4 4-4 4M3 18h3c2 0 3-2 4-4m4-4c1-2 2-4 4-4h3m-4-4 4 4-4 4"/></svg>
+            </button>
+          </div>
+        </div>
       <div class="tracklist">
 
-          <div class="track-row playable" data-src="audio/Just Being/01 - It Happens.mp3">
+          <div class="track-row playable" data-src="audio/Just Being/01 - It Happens.mp3" data-lyrics-sync="audio/Just Being/01 - It Happens.lrc">
             <button class="track-control" type="button" aria-label="Play It Happens">
               <span class="track-number">1</span>
 
@@ -735,7 +787,7 @@
             <span class="track-duration">2:21</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Just Being/02 - Staying.mp3">
+          <div class="track-row playable" data-src="audio/Just Being/02 - Staying.mp3" data-lyrics-sync="audio/Just Being/02 - Staying.lrc">
             <button class="track-control" type="button" aria-label="Play Staying">
               <span class="track-number">2</span>
 
@@ -760,7 +812,7 @@
             <span class="track-duration">2:18</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Just Being/03 - No Grip.mp3">
+          <div class="track-row playable" data-src="audio/Just Being/03 - No Grip.mp3" data-lyrics-sync="audio/Just Being/03 - No Grip.lrc">
             <button class="track-control" type="button" aria-label="Play No Grip">
               <span class="track-number">3</span>
 
@@ -785,7 +837,7 @@
             <span class="track-duration">2:14</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Just Being/04 - Space Opening.mp3">
+          <div class="track-row playable" data-src="audio/Just Being/04 - Space Opening.mp3" data-lyrics-sync="audio/Just Being/04 - Space Opening.lrc">
             <button class="track-control" type="button" aria-label="Play Space Opening">
               <span class="track-number">4</span>
 
@@ -810,7 +862,7 @@
             <span class="track-duration">2:02</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Just Being/05 - Upright.mp3">
+          <div class="track-row playable" data-src="audio/Just Being/05 - Upright.mp3" data-lyrics-sync="audio/Just Being/05 - Upright.lrc">
             <button class="track-control" type="button" aria-label="Play Upright">
               <span class="track-number">5</span>
 
@@ -835,7 +887,7 @@
             <span class="track-duration">2:30</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Just Being/06 - Enough.mp3">
+          <div class="track-row playable" data-src="audio/Just Being/06 - Enough.mp3" data-lyrics-sync="audio/Just Being/06 - Enough.lrc">
             <button class="track-control" type="button" aria-label="Play Enough">
               <span class="track-number">6</span>
 
@@ -860,7 +912,7 @@
             <span class="track-duration">2:27</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Just Being/07 - Still Here.mp3">
+          <div class="track-row playable" data-src="audio/Just Being/07 - Still Here.mp3" data-lyrics-sync="audio/Just Being/07 - Still Here.lrc">
             <button class="track-control" type="button" aria-label="Play Still Here">
               <span class="track-number">7</span>
 
@@ -885,7 +937,7 @@
             <span class="track-duration">2:53</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Just Being/08 - Just Being.mp3">
+          <div class="track-row playable" data-src="audio/Just Being/08 - Just Being.mp3" data-lyrics-sync="audio/Just Being/08 - Just Being.lrc">
             <button class="track-control" type="button" aria-label="Play Just Being">
               <span class="track-number">8</span>
 
@@ -951,10 +1003,23 @@
 
 
 
-      <h3>Tracklist</h3>
+      <div class="tracklist-header">
+          <h3>Tracklist</h3>
+          <div class="album-playback">
+            <div class="album-modes" role="radiogroup" aria-label="Playback mode">
+              <button class="album-mode" type="button" role="radio" data-mode="single" aria-checked="true" tabindex="0" aria-label="One track" title="One track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 8 6-8 6Z"/><path d="m16 10 2.5-2v8m-2.5 0h5"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="repeat-one" aria-checked="false" tabindex="-1" aria-label="Repeat track" title="Repeat track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 3 4 4-4 4M3 11V9a2 2 0 0 1 2-2h16M7 21l-4-4 4-4m14 0v2a2 2 0 0 1-2 2H3"/><path class="repeat-one-number" d="m10.25 10.75 1.75-1.25v5m-1.75 0h3.5"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="album" aria-checked="false" tabindex="-1" aria-label="Album once" title="Album once"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 7 6-7 6Zm11 1h7m-7 5h7m-7 5h7"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="repeat-all" aria-checked="false" tabindex="-1" aria-label="Repeat album" title="Repeat album"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 3 4 4-4 4M3 11V9a2 2 0 0 1 2-2h16M7 21l-4-4 4-4m14 0v2a2 2 0 0 1-2 2H3"/></svg></button>
+            </div>
+            <button class="album-shuffle" type="button" disabled aria-label="Shuffle album" aria-pressed="false" title="Shuffle album">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h3c5 0 7 12 12 12h3m-4-4 4 4-4 4M3 18h3c2 0 3-2 4-4m4-4c1-2 2-4 4-4h3m-4-4 4 4-4 4"/></svg>
+            </button>
+          </div>
+        </div>
       <div class="tracklist">
 
-          <div class="track-row playable" data-src="audio/Pulse Becoming/01 - Soft Skin.mp3">
+          <div class="track-row playable" data-src="audio/Pulse Becoming/01 - Soft Skin.mp3" data-lyrics-sync="audio/Pulse Becoming/01 - Soft Skin.lrc">
             <button class="track-control" type="button" aria-label="Play Soft Skin">
               <span class="track-number">1</span>
 
@@ -979,7 +1044,7 @@
             <span class="track-duration">3:41</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Pulse Becoming/02 - Half-Grown Heart.mp3">
+          <div class="track-row playable" data-src="audio/Pulse Becoming/02 - Half-Grown Heart.mp3" data-lyrics-sync="audio/Pulse Becoming/02 - Half-Grown Heart.lrc">
             <button class="track-control" type="button" aria-label="Play Half-Grown Heart">
               <span class="track-number">2</span>
 
@@ -1004,7 +1069,7 @@
             <span class="track-duration">3:52</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Pulse Becoming/03 - Heat on My Back.mp3">
+          <div class="track-row playable" data-src="audio/Pulse Becoming/03 - Heat on My Back.mp3" data-lyrics-sync="audio/Pulse Becoming/03 - Heat on My Back.lrc">
             <button class="track-control" type="button" aria-label="Play Heat On My Back">
               <span class="track-number">3</span>
 
@@ -1029,7 +1094,7 @@
             <span class="track-duration">3:17</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Pulse Becoming/04 - Skin Too Near.mp3">
+          <div class="track-row playable" data-src="audio/Pulse Becoming/04 - Skin Too Near.mp3" data-lyrics-sync="audio/Pulse Becoming/04 - Skin Too Near.lrc">
             <button class="track-control" type="button" aria-label="Play Skin Too Near">
               <span class="track-number">4</span>
 
@@ -1054,7 +1119,7 @@
             <span class="track-duration">3:00</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Pulse Becoming/05 - Pulse Breaker.mp3">
+          <div class="track-row playable" data-src="audio/Pulse Becoming/05 - Pulse Breaker.mp3" data-lyrics-sync="audio/Pulse Becoming/05 - Pulse Breaker.lrc">
             <button class="track-control" type="button" aria-label="Play Pulse Breaker">
               <span class="track-number">5</span>
 
@@ -1079,7 +1144,7 @@
             <span class="track-duration">4:31</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Pulse Becoming/06 - Learning My Shape.mp3">
+          <div class="track-row playable" data-src="audio/Pulse Becoming/06 - Learning My Shape.mp3" data-lyrics-sync="audio/Pulse Becoming/06 - Learning My Shape.lrc">
             <button class="track-control" type="button" aria-label="Play Learning My Shape">
               <span class="track-number">6</span>
 
@@ -1104,7 +1169,7 @@
             <span class="track-duration">3:47</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Pulse Becoming/07 - Light Under My Skin.mp3">
+          <div class="track-row playable" data-src="audio/Pulse Becoming/07 - Light Under My Skin.mp3" data-lyrics-sync="audio/Pulse Becoming/07 - Light Under My Skin.lrc">
             <button class="track-control" type="button" aria-label="Play Light Under My Skin">
               <span class="track-number">7</span>
 
@@ -1129,7 +1194,7 @@
             <span class="track-duration">2:51</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Pulse Becoming/08 - Flood Me Slow.mp3">
+          <div class="track-row playable" data-src="audio/Pulse Becoming/08 - Flood Me Slow.mp3" data-lyrics-sync="audio/Pulse Becoming/08 - Flood Me Slow.lrc">
             <button class="track-control" type="button" aria-label="Play Flood Me Slow">
               <span class="track-number">8</span>
 
@@ -1154,7 +1219,7 @@
             <span class="track-duration">3:21</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Pulse Becoming/09 - Unbody, Unborn.mp3">
+          <div class="track-row playable" data-src="audio/Pulse Becoming/09 - Unbody, Unborn.mp3" data-lyrics-sync="audio/Pulse Becoming/09 - Unbody, Unborn.lrc">
             <button class="track-control" type="button" aria-label="Play Unbody, Unborn">
               <span class="track-number">9</span>
 
@@ -1221,10 +1286,23 @@
         </p>
 
 
-        <h3>Tracklist</h3>
+        <div class="tracklist-header">
+          <h3>Tracklist</h3>
+          <div class="album-playback">
+            <div class="album-modes" role="radiogroup" aria-label="Playback mode">
+              <button class="album-mode" type="button" role="radio" data-mode="single" aria-checked="true" tabindex="0" aria-label="One track" title="One track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 8 6-8 6Z"/><path d="m16 10 2.5-2v8m-2.5 0h5"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="repeat-one" aria-checked="false" tabindex="-1" aria-label="Repeat track" title="Repeat track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 3 4 4-4 4M3 11V9a2 2 0 0 1 2-2h16M7 21l-4-4 4-4m14 0v2a2 2 0 0 1-2 2H3"/><path class="repeat-one-number" d="m10.25 10.75 1.75-1.25v5m-1.75 0h3.5"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="album" aria-checked="false" tabindex="-1" aria-label="Album once" title="Album once"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 7 6-7 6Zm11 1h7m-7 5h7m-7 5h7"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="repeat-all" aria-checked="false" tabindex="-1" aria-label="Repeat album" title="Repeat album"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 3 4 4-4 4M3 11V9a2 2 0 0 1 2-2h16M7 21l-4-4 4-4m14 0v2a2 2 0 0 1-2 2H3"/></svg></button>
+            </div>
+            <button class="album-shuffle" type="button" disabled aria-label="Shuffle album" aria-pressed="false" title="Shuffle album">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h3c5 0 7 12 12 12h3m-4-4 4 4-4 4M3 18h3c2 0 3-2 4-4m4-4c1-2 2-4 4-4h3m-4-4 4 4-4 4"/></svg>
+            </button>
+          </div>
+        </div>
         <div class="tracklist">
 
-          <div class="track-row playable" data-src="audio/Lucid Dream/01 - Let You Be.mp3">
+          <div class="track-row playable" data-src="audio/Lucid Dream/01 - Let You Be.mp3" data-lyrics-sync="audio/Lucid Dream/01 - Let You Be.lrc">
             <button class="track-control" type="button" aria-label="Play Let You Be">
               <span class="track-number">1</span>
 
@@ -1249,7 +1327,7 @@
             <span class="track-duration">3:03</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Lucid Dream/02 - Whisper In Your Wake.mp3">
+          <div class="track-row playable" data-src="audio/Lucid Dream/02 - Whisper In Your Wake.mp3" data-lyrics-sync="audio/Lucid Dream/02 - Whisper In Your Wake.lrc">
             <button class="track-control" type="button" aria-label="Play Whisper In Your Wake">
               <span class="track-number">2</span>
 
@@ -1274,7 +1352,7 @@
             <span class="track-duration">3:30</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Lucid Dream/03 - Dreamskin.mp3">
+          <div class="track-row playable" data-src="audio/Lucid Dream/03 - Dreamskin.mp3" data-lyrics-sync="audio/Lucid Dream/03 - Dreamskin.lrc">
             <button class="track-control" type="button" aria-label="Play Dreamskin">
               <span class="track-number">3</span>
 
@@ -1299,7 +1377,7 @@
             <span class="track-duration">4:11</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Lucid Dream/04 - Where the Wind Found Us.mp3">
+          <div class="track-row playable" data-src="audio/Lucid Dream/04 - Where the Wind Found Us.mp3" data-lyrics-sync="audio/Lucid Dream/04 - Where the Wind Found Us.lrc">
             <button class="track-control" type="button" aria-label="Play Where The Wind Found Us">
               <span class="track-number">4</span>
 
@@ -1324,7 +1402,7 @@
             <span class="track-duration">3:07</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Lucid Dream/05 - Afterlight.mp3">
+          <div class="track-row playable" data-src="audio/Lucid Dream/05 - Afterlight.mp3" data-lyrics-sync="audio/Lucid Dream/05 - Afterlight.lrc">
             <button class="track-control" type="button" aria-label="Play Afterlight">
               <span class="track-number">5</span>
 
@@ -1349,7 +1427,7 @@
             <span class="track-duration">3:21</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Lucid Dream/06 - Unbound.mp3">
+          <div class="track-row playable" data-src="audio/Lucid Dream/06 - Unbound.mp3" data-lyrics-sync="audio/Lucid Dream/06 - Unbound.lrc">
             <button class="track-control" type="button" aria-label="Play Unbound">
               <span class="track-number">6</span>
 
@@ -1374,7 +1452,7 @@
             <span class="track-duration">3:10</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Lucid Dream/07 - Second Breath.mp3">
+          <div class="track-row playable" data-src="audio/Lucid Dream/07 - Second Breath.mp3" data-lyrics-sync="audio/Lucid Dream/07 - Second Breath.lrc">
             <button class="track-control" type="button" aria-label="Play Second Breath">
               <span class="track-number">7</span>
 
@@ -1399,7 +1477,7 @@
             <span class="track-duration">3:12</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Lucid Dream/08 - My Body Made of Light.mp3">
+          <div class="track-row playable" data-src="audio/Lucid Dream/08 - My Body Made of Light.mp3" data-lyrics-sync="audio/Lucid Dream/08 - My Body Made of Light.lrc">
             <button class="track-control" type="button" aria-label="Play My Body Made Of Light">
               <span class="track-number">8</span>
 
@@ -1462,10 +1540,23 @@
           <a href="https://www.pandora.com/artist/giuntru/silent-waves/AL46V7ggcP7Zjpq" target="_blank">Pandora (US)</a>
         </p>
 
-        <h3>Tracklist</h3>
+        <div class="tracklist-header">
+          <h3>Tracklist</h3>
+          <div class="album-playback">
+            <div class="album-modes" role="radiogroup" aria-label="Playback mode">
+              <button class="album-mode" type="button" role="radio" data-mode="single" aria-checked="true" tabindex="0" aria-label="One track" title="One track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 8 6-8 6Z"/><path d="m16 10 2.5-2v8m-2.5 0h5"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="repeat-one" aria-checked="false" tabindex="-1" aria-label="Repeat track" title="Repeat track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 3 4 4-4 4M3 11V9a2 2 0 0 1 2-2h16M7 21l-4-4 4-4m14 0v2a2 2 0 0 1-2 2H3"/><path class="repeat-one-number" d="m10.25 10.75 1.75-1.25v5m-1.75 0h3.5"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="album" aria-checked="false" tabindex="-1" aria-label="Album once" title="Album once"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 7 6-7 6Zm11 1h7m-7 5h7m-7 5h7"/></svg></button>
+              <button class="album-mode" type="button" role="radio" data-mode="repeat-all" aria-checked="false" tabindex="-1" aria-label="Repeat album" title="Repeat album"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 3 4 4-4 4M3 11V9a2 2 0 0 1 2-2h16M7 21l-4-4 4-4m14 0v2a2 2 0 0 1-2 2H3"/></svg></button>
+            </div>
+            <button class="album-shuffle" type="button" disabled aria-label="Shuffle album" aria-pressed="false" title="Shuffle album">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h3c5 0 7 12 12 12h3m-4-4 4 4-4 4M3 18h3c2 0 3-2 4-4m4-4c1-2 2-4 4-4h3m-4-4 4 4-4 4"/></svg>
+            </button>
+          </div>
+        </div>
         <div class="tracklist">
 
-          <div class="track-row playable" data-src="audio/Silent Waves/01 - Brighter Than Fear.mp3">
+          <div class="track-row playable" data-src="audio/Silent Waves/01 - Brighter Than Fear.mp3" data-lyrics-sync="audio/Silent Waves/01 - Brighter Than Fear.lrc">
             <button class="track-control" type="button" aria-label="Play Brighter Than Fear">
               <span class="track-number">1</span>
 
@@ -1490,7 +1581,7 @@
             <span class="track-duration">2:13</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Silent Waves/02 - Backpack on My Shoulder.mp3">
+          <div class="track-row playable" data-src="audio/Silent Waves/02 - Backpack on My Shoulder.mp3" data-lyrics-sync="audio/Silent Waves/02 - Backpack on My Shoulder.lrc">
             <button class="track-control" type="button" aria-label="Play Backpack on My Shoulder">
               <span class="track-number">2</span>
 
@@ -1515,7 +1606,7 @@
             <span class="track-duration">2:25</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Silent Waves/03 - The Quiet Sky.mp3">
+          <div class="track-row playable" data-src="audio/Silent Waves/03 - The Quiet Sky.mp3" data-lyrics-sync="audio/Silent Waves/03 - The Quiet Sky.lrc">
             <button class="track-control" type="button" aria-label="Play The Quiet Sky">
               <span class="track-number">3</span>
 
@@ -1540,7 +1631,7 @@
             <span class="track-duration">3:05</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Silent Waves/04 - The Rare Kind.mp3">
+          <div class="track-row playable" data-src="audio/Silent Waves/04 - The Rare Kind.mp3" data-lyrics-sync="audio/Silent Waves/04 - The Rare Kind.lrc">
             <button class="track-control" type="button" aria-label="Play The Rare Kind">
               <span class="track-number">4</span>
 
@@ -1565,7 +1656,7 @@
             <span class="track-duration">2:35</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Silent Waves/05 - The Wave Inside.mp3">
+          <div class="track-row playable" data-src="audio/Silent Waves/05 - The Wave Inside.mp3" data-lyrics-sync="audio/Silent Waves/05 - The Wave Inside.lrc">
             <button class="track-control" type="button" aria-label="Play The Wave Inside">
               <span class="track-number">5</span>
 
@@ -1590,7 +1681,7 @@
             <span class="track-duration">2:18</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Silent Waves/06 - Drive Through The Light.mp3">
+          <div class="track-row playable" data-src="audio/Silent Waves/06 - Drive Through The Light.mp3" data-lyrics-sync="audio/Silent Waves/06 - Drive Through The Light.lrc">
             <button class="track-control" type="button" aria-label="Play Drive Through the Light">
               <span class="track-number">6</span>
 
@@ -1615,7 +1706,7 @@
             <span class="track-duration">2:36</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Silent Waves/07 - Through The Air.mp3">
+          <div class="track-row playable" data-src="audio/Silent Waves/07 - Through The Air.mp3" data-lyrics-sync="audio/Silent Waves/07 - Through The Air.lrc">
             <button class="track-control" type="button" aria-label="Play Through the Air">
               <span class="track-number">7</span>
 
@@ -1640,7 +1731,7 @@
             <span class="track-duration">2:53</span>
           </div>
 
-          <div class="track-row playable" data-src="audio/Silent Waves/08 - Made Of Light And Dreams.mp3">
+          <div class="track-row playable" data-src="audio/Silent Waves/08 - Made Of Light And Dreams.mp3" data-lyrics-sync="audio/Silent Waves/08 - Made Of Light And Dreams.lrc">
             <button class="track-control" type="button" aria-label="Play Made of Light and Dreams">
               <span class="track-number">8</span>
 
@@ -1709,6 +1800,9 @@
           <span class="track-duration lyrics-time">2:23</span>
         </div>
       </div>
+      <div class="lyrics-tools">
+        <button class="lyrics-follow" type="button" hidden disabled aria-hidden="true">Follow lyrics</button>
+      </div>
       <div class="lyrics-text" tabindex="0" role="region" aria-label="Still Moving lyrics">
       </div>
     </dialog>
@@ -1718,6 +1812,79 @@
         const tracks = [...document.querySelectorAll('.track-row.playable')];
         if (!tracks.length) return;
         let track = tracks[0];
+        const albumPlayback = new Map();
+        document.querySelectorAll('.album').forEach(album => {
+          const rows = [...album.querySelectorAll('.track-row.playable')];
+          if (!rows.length) return;
+          const modes = [...album.querySelectorAll('.album-mode')];
+          const shuffle = album.querySelector('.album-shuffle');
+          const name = rows[0].dataset.src.split('/')[1];
+          album.querySelector('.album-modes').setAttribute('aria-label', `${name} playback mode`);
+          shuffle.setAttribute('aria-label', `Shuffle ${name}`);
+          const state = { rows, mode: 'single', shuffle: false, remaining: null };
+          albumPlayback.set(album, state);
+          const syncShuffleAvailability = () => {
+            const compatible = ['album', 'repeat-all'].includes(state.mode);
+            shuffle.disabled = !compatible;
+            if (!compatible) state.shuffle = false;
+            shuffle.setAttribute('aria-pressed', String(state.shuffle));
+            shuffle.title = compatible ? 'Shuffle album' : 'Shuffle requires Album once or Repeat album';
+          };
+          syncShuffleAvailability();
+          const selectMode = button => {
+            state.mode = button.dataset.mode;
+            state.remaining = null;
+            syncShuffleAvailability();
+            modes.forEach(mode => {
+              const selected = mode === button;
+              mode.setAttribute('aria-checked', String(selected));
+              mode.tabIndex = selected ? 0 : -1;
+            });
+          };
+          modes.forEach((button, index) => {
+            button.addEventListener('click', () => selectMode(button));
+            button.addEventListener('keydown', event => {
+              const direction = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[event.key];
+              if (!direction && !['Home', 'End'].includes(event.key)) return;
+              event.preventDefault();
+              const next = event.key === 'Home' ? 0 : event.key === 'End' ? modes.length - 1 :
+                (index + direction + modes.length) % modes.length;
+              selectMode(modes[next]);
+              modes[next].focus();
+            });
+          });
+          shuffle.addEventListener('click', () => {
+            if (shuffle.disabled) return;
+            state.shuffle = !state.shuffle;
+            state.remaining = null;
+            shuffle.setAttribute('aria-pressed', String(state.shuffle));
+          });
+        });
+        function shuffled(rows) {
+          const result = [...rows];
+          for (let i = result.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [result[i], result[j]] = [result[j], result[i]];
+          }
+          return result;
+        }
+        function nextAlbumTrack() {
+          const state = albumPlayback.get(track.closest('.album'));
+          if (state.mode === 'single') return null;
+          if (state.mode === 'repeat-one') return track;
+          if (state.remaining === null) {
+            state.remaining = state.shuffle ? shuffled(state.rows.filter(row => row !== track)) :
+              state.rows.slice(state.rows.indexOf(track) + 1);
+          }
+          if (!state.remaining.length && state.mode === 'repeat-all') {
+            state.remaining = state.shuffle ? shuffled(state.rows) : [...state.rows];
+            if (state.shuffle && state.remaining[0] === track && state.remaining.length > 1) {
+              [state.remaining[0], state.remaining[1]] = [state.remaining[1], state.remaining[0]];
+            }
+          }
+          return state.remaining.shift() || null;
+        }
+
         const totalDurations = new Map(tracks.map(row =>
           [row, row.querySelector('.track-duration').textContent.trim()]));
 
@@ -1866,6 +2033,8 @@
           lyricsSeek.setAttribute('aria-valuetext', sourceSeek.getAttribute('aria-valuetext'));
           const time = lyricsTrack.querySelector('.track-duration').textContent;
           if (lyricsTime.textContent !== time) lyricsTime.textContent = time;
+          syncLyricsLine();
+          followLyricsLine();
         };
         lyricsPlay.addEventListener('click', () => lyricsTrack.querySelector('.track-control').click());
         lyricsSeek.addEventListener('input', () => {
@@ -1884,6 +2053,144 @@
         let opener;
         let previousOverflow;
         let lyricsRequest;
+        let lyricsCues = [];
+        let activeLyricsLine = null;
+        let followingLyrics = true;
+        const followButton = document.querySelector('.lyrics-follow');
+        function setFollowVisible(visible) {
+          if (!visible) followButton.getAnimations().forEach(animation => animation.cancel());
+          followButton.disabled = !visible;
+          followButton.setAttribute('aria-hidden', String(!visible));
+          followButton.hidden = !visible;
+        }
+        let lyricsScrollFrame = 0;
+        let lyricsScrollAnchors = [];
+        let lyricsScrollLimit = 0;
+        function stopLyricsScroll() {
+          cancelAnimationFrame(lyricsScrollFrame);
+          lyricsScrollFrame = 0;
+        }
+        function measureLyricsScroll() {
+          if (!lyricsDialog.open) return;
+          const panel = lyricsText.getBoundingClientRect();
+          const offset = lyricsText.scrollTop - panel.top - panel.height * 0.4;
+          let position = 0;
+          lyricsScrollAnchors = lyricsCues.map(cue => {
+            if (cue.element) position = cue.element.getBoundingClientRect().top + offset;
+            return { time: cue.time, position };
+          });
+          lyricsScrollLimit = Math.max(0, lyricsText.scrollHeight - lyricsText.clientHeight);
+        }
+        function lyricsScrollTarget() {
+          if (!lyricsScrollAnchors.length) return 0;
+          const time = audioPlayer.currentTime;
+          let index = 0;
+          while (index + 1 < lyricsScrollAnchors.length && lyricsScrollAnchors[index + 1].time <= time) index++;
+          const from = lyricsScrollAnchors[index];
+          const to = lyricsScrollAnchors[index + 1];
+          // Interpolate between timed verses: longer phrases move more slowly.
+          const fraction = to && !reducedMotion.matches ?
+            Math.max(0, Math.min(1, (time - from.time) / (to.time - from.time))) : 0;
+          const position = from.position + (to ? (to.position - from.position) * fraction : 0);
+          return Math.max(0, Math.min(lyricsScrollLimit, position));
+        }
+        function canFollowLyrics() {
+          return followingLyrics && lyricsDialog.open && !lyricsDialog.classList.contains('is-closing') && !lyricsDialog.classList.contains('is-switching') && track === lyricsTrack &&
+            lyricsScrollAnchors.length > 0 && !document.hidden;
+        }
+        function followLyricsLine(force = false) {
+          if (!canFollowLyrics()) { stopLyricsScroll(); return; }
+          if (force || audioPlayer.paused || audioPlayer.ended || reducedMotion.matches) {
+            stopLyricsScroll();
+            lyricsText.scrollTop = lyricsScrollTarget();
+          }
+          if (audioPlayer.paused || audioPlayer.ended || reducedMotion.matches || lyricsScrollFrame) return;
+          let lastFrame = performance.now();
+          let position = lyricsText.scrollTop;
+          const draw = time => {
+            if (!canFollowLyrics() || audioPlayer.paused || audioPlayer.ended) {
+              stopLyricsScroll();
+              return;
+            }
+            const elapsed = time - lastFrame;
+            if (elapsed >= 30) {
+              lastFrame = time;
+              const target = lyricsScrollTarget();
+              // Smooth speed changes without queuing browser scroll animations.
+              const blend = 1 - Math.exp(-elapsed / 120);
+              position += (target - position) * blend;
+              lyricsText.scrollTop = position;
+            }
+            lyricsScrollFrame = requestAnimationFrame(draw);
+          };
+          lyricsScrollFrame = requestAnimationFrame(draw);
+        }
+        function pauseLyricsFollow() {
+          if (!lyricsCues.length || !followingLyrics) return;
+          followingLyrics = false;
+          stopLyricsScroll();
+          setFollowVisible(true);
+        }
+        function resumeLyricsFollow() {
+          followingLyrics = true;
+          setFollowVisible(false);
+          followLyricsLine(true);
+        }
+        new ResizeObserver(() => {
+          measureLyricsScroll();
+          followLyricsLine(true);
+        }).observe(lyricsText);
+        document.addEventListener('visibilitychange', () => followLyricsLine(true));
+        reducedMotion.addEventListener('change', () => followLyricsLine(true));
+        lyricsText.addEventListener('wheel', pauseLyricsFollow, { passive: true });
+        lyricsText.addEventListener('touchmove', pauseLyricsFollow, { passive: true });
+        lyricsText.addEventListener('keydown', event => {
+          if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) pauseLyricsFollow();
+        });
+        lyricsText.addEventListener('pointerdown', event => {
+          const bounds = lyricsText.getBoundingClientRect();
+          if (event.clientX >= bounds.left + lyricsText.clientWidth) pauseLyricsFollow();
+        });
+        followButton.addEventListener('click', () => {
+          resumeLyricsFollow();
+          lyricsText.focus({ preventScroll: true });
+        });
+        function syncLyricsLine() {
+          let nextLine = null;
+          if (track === lyricsTrack && !audioPlayer.ended) {
+            for (const cue of lyricsCues) {
+              if (cue.time > audioPlayer.currentTime) break;
+              nextLine = cue.element;
+            }
+          }
+          if (nextLine === activeLyricsLine) return;
+          activeLyricsLine?.classList.remove('is-current');
+          activeLyricsLine?.removeAttribute('aria-current');
+          activeLyricsLine = nextLine;
+          activeLyricsLine?.classList.add('is-current');
+          activeLyricsLine?.setAttribute('aria-current', 'true');
+          followLyricsLine();
+        }
+
+        function parseLyricsCues(lrc, elements) {
+          const cues = [];
+          let lineIndex = 0;
+          for (const line of lrc.split(/\r?\n/)) {
+            const match = line.match(/^\[(\d+):(\d{2}(?:\.\d+)?)\](.*)$/);
+            if (!match) continue;
+            const time = Number(match[1]) * 60 + Number(match[2]);
+            if (cues.length && time < cues[cues.length - 1].time) return [];
+            const text = match[3].trim();
+            let element = null;
+            if (text) {
+              element = elements[lineIndex++];
+              // Keep plain lyrics if the timing file no longer matches the TXT.
+              if (!element || element.textContent.trim() !== text) return [];
+            }
+            cues.push({ time, element });
+          }
+          return lineIndex === elements.length ? cues : [];
+        }
         document.addEventListener('keydown', event => {
           if (event.key === 'Escape' && !lyricsDialog.open) lyricsRequest?.abort();
           if (!event.metaKey && !event.ctrlKey && !event.altKey) {
@@ -1893,72 +2200,159 @@
         document.addEventListener('pointerdown', () => {
           openers.forEach(button => button.classList.remove('keyboard-focus'));
         });
-        openers.forEach(button => button.addEventListener('click', async () => {
-          opener = button;
-          lyricsTrack = button.closest('.track-row');
-          const title = button.textContent.trim();
-          const album = lyricsTrack.dataset.src.split('/')[1];
-          const cover = lyricsTrack.closest('.album').querySelector('.album-cover');
-          document.querySelector('.lyrics-caption').textContent = `${album} · Lyrics`;
-          document.querySelector('.lyrics-cover').src = cover.getAttribute('src');
-          document.querySelector('#lyrics-title').textContent = title;
-          lyricsSeek.setAttribute('aria-label', `Seek ${title} in lyrics panel`);
-          lyricsText.setAttribute('aria-label', `${title} lyrics`);
-          lyricsText.replaceChildren();
-          lyricsText.setAttribute('aria-busy', 'true');
+        let lyricsContentAnimations = [];
+        function resetLyricsContentFade() {
+          lyricsContentAnimations.forEach(animation => animation.cancel());
+          lyricsContentAnimations = [];
+          lyricsDialog.classList.remove('is-switching');
+        }
+        async function fadeLyricsContent(entering, signal) {
+          lyricsContentAnimations.forEach(animation => animation.cancel());
+          const elements = [...lyricsDialog.querySelectorAll('.lyrics-caption, .lyrics-player, .lyrics-text, .lyrics-follow:not([hidden])')];
+          const animations = elements.map(element => element.animate(
+            [{ opacity: entering ? 0 : 1 }, { opacity: entering ? 1 : 0 }],
+            { duration: entering ? 800 : 560, easing: entering ? 'ease-out' : 'ease-in', fill: 'forwards' }
+          ));
+          lyricsContentAnimations = animations;
+          const cancel = () => animations.forEach(animation => animation.cancel());
+          signal.addEventListener('abort', cancel, { once: true });
+          try { await Promise.all(animations.map(animation => animation.finished)); }
+          catch { /* A newer track or a close request superseded this transition. */ }
+          finally { signal.removeEventListener('abort', cancel); }
+        }
+        async function showLyrics(button, keepOpen = false) {
+          if (lyricsDialog.classList.contains('is-closing')) return;
           lyricsRequest?.abort();
+          resetLyricsContentFade();
           const request = new AbortController();
           lyricsRequest = request;
-          const path = lyricsTrack.dataset.src.replace(/\.mp3$/i, '.txt');
+          const row = button.closest('.track-row');
+          const trackTitle = button.textContent.trim();
+          const album = row.dataset.src.split('/')[1];
+          const cover = row.closest('.album').querySelector('.album-cover');
+          const path = row.dataset.src.replace(/\.mp3$/i, '.txt');
+          let paragraphs = [];
+          let lrc = '';
+          if (keepOpen) lyricsPlay.disabled = true;
           try {
-            if (location.protocol === 'file:') {
-              lyricsText.textContent = 'Per leggere i testi in locale, apri Avvia sito locale.command nella cartella del sito.';
-              return;
-            }
+            if (location.protocol === 'file:') throw new Error('local-file');
+            const timingPath = row.dataset.lyricsSync;
+            const timingText = timingPath ? fetch(timingPath.split('/').map(encodeURIComponent).join('/'), {
+              signal: request.signal, cache: 'no-cache'
+            }).then(response => response.ok ? response.text() : '').catch(() => '') : Promise.resolve('');
             const response = await fetch(path.split('/').map(encodeURIComponent).join('/'), {
-              signal: request.signal,
-              cache: 'no-cache'
+              signal: request.signal, cache: 'no-cache'
             });
             if (!response.ok) throw new Error(`Lyrics request failed: ${response.status}`);
-            const text = await response.text();
-            if (request !== lyricsRequest || request.signal.aborted) return;
-            const paragraphs = text.replace(/\r\n?/g, '\n').trim().split(/\n\n+/).map(stanza => {
+            const result = await Promise.all([response.text(), timingText]);
+            const text = result[0];
+            lrc = result[1];
+            paragraphs = text.replace(/\r\n?/g, '\n').trim().split(/\n\n+/).map(stanza => {
               const paragraph = document.createElement('p');
               stanza.split('\n').forEach((line, index) => {
                 if (index) paragraph.append(document.createElement('br'));
-                paragraph.append(document.createTextNode(line));
+                const span = document.createElement('span');
+                span.className = 'lyrics-line';
+                span.textContent = line;
+                paragraph.append(span);
               });
               return paragraph;
             });
-            lyricsText.replaceChildren(...paragraphs);
           } catch (error) {
             if (error.name === 'AbortError' || request !== lyricsRequest || request.signal.aborted) return;
-            lyricsText.textContent = 'Lyrics could not be loaded. Close and reopen to try again.';
-          } finally {
-            if (request === lyricsRequest) lyricsText.removeAttribute('aria-busy');
-            if (request !== lyricsRequest || request.signal.aborted) return;
-            // Finish text layout and cover decoding before revealing the panel.
-            await document.querySelector('.lyrics-cover').decode().catch(() => {});
-            if (request !== lyricsRequest || request.signal.aborted) return;
-            panelBars.forEach((bar, index) => {
-              bar.style.height = lyricsTrack.querySelectorAll('.track-eq i')[index].style.height;
-            });
-            syncLyricsPlayer();
+            const message = document.createElement('p');
+            message.textContent = location.protocol === 'file:' ?
+              'Per leggere i testi in locale, apri Avvia sito locale.command nella cartella del sito.' :
+              'Lyrics could not be loaded. Close and reopen to try again.';
+            paragraphs = [message];
+          }
+          const image = new Image();
+          image.src = cover.getAttribute('src');
+          await image.decode().catch(() => {});
+          if (request !== lyricsRequest || request.signal.aborted || (keepOpen && !lyricsDialog.open)) return;
+          const transitioning = keepOpen && lyricsDialog.open && row !== lyricsTrack && !reducedMotion.matches;
+          if (transitioning) {
+            // Preserve the frame while only the fully loaded contents change.
+            lyricsDialog.style.height = `${lyricsDialog.getBoundingClientRect().height}px`;
+            lyricsDialog.classList.add('is-switching');
+            stopLyricsScroll();
+            await fadeLyricsContent(false, request.signal);
+            if (request !== lyricsRequest || request.signal.aborted || !lyricsDialog.open) return;
+          }
+          // Swap a complete panel in one frame, including automatic track changes.
+          opener = button;
+          lyricsTrack = row;
+          stopLyricsScroll();
+          lyricsScrollAnchors = [];
+          lyricsCues = [];
+          activeLyricsLine = null;
+          followingLyrics = true;
+          setFollowVisible(false);
+          document.querySelector('.lyrics-caption').textContent = `${album} · Lyrics`;
+          document.querySelector('.lyrics-cover').src = image.src;
+          document.querySelector('#lyrics-title').textContent = trackTitle;
+          lyricsSeek.setAttribute('aria-label', `Seek ${trackTitle} in lyrics panel`);
+          lyricsText.setAttribute('aria-label', `${trackTitle} lyrics`);
+          lyricsText.replaceChildren(...paragraphs);
+          if (lrc) lyricsCues = parseLyricsCues(lrc, [...lyricsText.querySelectorAll('.lyrics-line')]);
+          panelBars.forEach((bar, index) => {
+            bar.style.height = row.querySelectorAll('.track-eq i')[index].style.height;
+          });
+          syncLyricsPlayer();
+          if (!lyricsDialog.open) {
             previousOverflow = document.body.style.overflow;
             lyricsDialog.showModal();
             document.body.style.overflow = 'hidden';
-            lyricsText.scrollTop = 0;
           }
-        }));
-        lyricsDialog.querySelector('.lyrics-close').addEventListener('click', () => lyricsDialog.close());
+          lyricsText.scrollTop = 0;
+          measureLyricsScroll();
+          followLyricsLine(true);
+          if (transitioning) {
+            await fadeLyricsContent(true, request.signal);
+            if (request !== lyricsRequest || request.signal.aborted) return;
+            resetLyricsContentFade();
+            followLyricsLine(true);
+          }
+          lyricsPlay.disabled = false;
+        }
+        openers.forEach(button => button.addEventListener('click', () => showLyrics(button)));
+        let lyricsCloseTimer;
+        function finishLyricsClose() {
+          clearTimeout(lyricsCloseTimer);
+          if (lyricsDialog.open) lyricsDialog.close();
+        }
+        function requestLyricsClose() {
+          if (!lyricsDialog.open || lyricsDialog.classList.contains('is-closing')) return;
+          lyricsRequest?.abort();
+          stopLyricsScroll();
+          if (reducedMotion.matches) { finishLyricsClose(); return; }
+          lyricsDialog.classList.add('is-closing');
+          // Fallback for interrupted or suppressed CSS animations.
+          lyricsCloseTimer = setTimeout(finishLyricsClose, 400);
+        }
+        lyricsDialog.addEventListener('animationend', event => {
+          if (event.target === lyricsDialog && event.animationName === 'lyrics-fade-out' &&
+              lyricsDialog.classList.contains('is-closing')) finishLyricsClose();
+        });
+        lyricsDialog.addEventListener('cancel', event => {
+          event.preventDefault();
+          requestLyricsClose();
+        });
+        lyricsDialog.querySelector('.lyrics-close').addEventListener('click', requestLyricsClose);
         lyricsDialog.addEventListener('click', event => {
           if (event.target !== lyricsDialog) return;
           const bounds = lyricsDialog.getBoundingClientRect();
           if (event.clientX < bounds.left || event.clientX > bounds.right ||
-              event.clientY < bounds.top || event.clientY > bounds.bottom) lyricsDialog.close();
+              event.clientY < bounds.top || event.clientY > bounds.bottom) requestLyricsClose();
         });
         lyricsDialog.addEventListener('close', () => {
+          clearTimeout(lyricsCloseTimer);
+          lyricsDialog.classList.remove('is-closing');
+          resetLyricsContentFade();
+          lyricsDialog.style.removeProperty('height');
+          stopLyricsScroll();
           lyricsRequest?.abort();
+          lyricsPlay.disabled = false;
           document.body.style.overflow = previousOverflow;
           opener?.focus({ preventScroll: true });
         });
@@ -2015,8 +2409,14 @@
               audioPlayer.currentTime + direction * 5));
             syncProgress();
           });
-          row.querySelector('button.track-control').addEventListener('click', async () => {
+          row.querySelector('button.track-control').addEventListener('click', () => activateTrack(row));
+        });
+
+        async function activateTrack(row, automatic = false) {
             const currentRequest = ++request;
+            if (!automatic && (row !== track || audioPlayer.ended)) {
+              albumPlayback.get(row.closest('.album')).remaining = null;
+            }
             if (row !== track) {
               audioPlayer.pause();
               setPlaying(false);
@@ -2029,6 +2429,11 @@
               title = row.querySelector('.track-title').textContent.trim();
               bars = [...row.querySelectorAll('.track-eq i')];
               audioPlayer.src = row.dataset.src;
+              if (lyricsDialog.open && lyricsTrack !== row) {
+                await showLyrics(row.querySelector('.lyrics-open'), true);
+                // A later selection supersedes this pending playback request.
+                if (currentRequest !== request) return;
+              }
               syncLyricsPlayer();
             } else if (!audioPlayer.paused) {
               audioPlayer.pause();
@@ -2048,12 +2453,17 @@
                 control.setAttribute('aria-label', `Playback unavailable. Retry ${title}`);
               }
             }
-          });
-        });
+        }
 
         ['loadedmetadata', 'durationchange', 'timeupdate', 'seeked'].forEach(event => {
           audioPlayer.addEventListener(event, syncProgress);
         });
+
+        audioPlayer.addEventListener('seeking', () => {
+          syncLyricsLine();
+          resumeLyricsFollow();
+        });
+        audioPlayer.addEventListener('seeked', resumeLyricsFollow);
 
         audioPlayer.addEventListener('playing', () => {
           if (!audioPlayer.paused) setPlaying(true);
@@ -2064,6 +2474,11 @@
         audioPlayer.addEventListener('ended', () => {
           setPlaying(false);
           syncProgress();
+          const next = nextAlbumTrack();
+          if (next) {
+            if (next === track) audioPlayer.currentTime = 0;
+            activateTrack(next, true);
+          }
         });
         audioPlayer.addEventListener('error', () => {
           seek.disabled = true;
