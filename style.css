@@ -681,8 +681,8 @@ button.track-control:focus-visible {
 .track-play,
 .track-pause {
   display: none;
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   flex: none;
 }
 
@@ -1189,7 +1189,7 @@ button.track-control:focus-visible {
   height: 40px;
 }
 
-.lyrics-play svg { width: 26px; height: 26px; flex: none; fill: currentColor; }
+.lyrics-play svg { width: 24px; height: 24px; flex: none; fill: currentColor; }
 .lyrics-pause-icon,
 .lyrics-player.playing .lyrics-play-icon { display: none; }
 .lyrics-player.playing .lyrics-eq { display: flex; }
