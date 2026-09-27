@@ -681,8 +681,9 @@ button.track-control:focus-visible {
 .track-play,
 .track-pause {
   display: none;
-  width: 20px;
-  height: 20px;
+  width: 26px;
+  height: 26px;
+  flex: none;
 }
 
 .track-play svg,
@@ -737,21 +738,21 @@ button.track-control:focus-visible {
 }
 
 .track-seek::-webkit-slider-runnable-track {
-  height: 6px;
+  height: 5px;
   border-radius: 1px;
-  background: linear-gradient(to right, rgba(207, 224, 255, 0.42) var(--progress), rgba(185, 199, 255, 0.12) var(--progress));
+  background: linear-gradient(to right, #9fbaff var(--progress), rgba(185, 199, 255, 0.12) var(--progress));
 }
 
 .track-seek::-moz-range-track {
-  height: 6px;
+  height: 5px;
   border-radius: 1px;
-  background: linear-gradient(to right, rgba(207, 224, 255, 0.42) var(--progress), rgba(185, 199, 255, 0.12) var(--progress));
+  background: linear-gradient(to right, #9fbaff var(--progress), rgba(185, 199, 255, 0.12) var(--progress));
 }
 
 .track-seek::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 1px;
-  height: 6px;
+  height: 5px;
   margin-top: 0;
   border: 0;
   background: transparent;
@@ -759,7 +760,7 @@ button.track-control:focus-visible {
 
 .track-seek::-moz-range-thumb {
   width: 1px;
-  height: 6px;
+  height: 5px;
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -804,110 +805,64 @@ button.track-control:focus-visible {
    ========================= */
 
 @media (hover: hover) and (pointer: fine) {
-
-  .track-row.playable:hover {
-    background: rgba(255, 255, 255, 0.022);
-  }
-
-  /* number -> play */
-
-  .track-row.playable:hover .track-number {
-    display: none;
-  }
-
-  .track-row.playable:hover .track-play {
-    display: block;
-  }
-
-
-  /* while playing: equalizer -> pause */
-
-  .track-row.playable.playing:hover .track-play {
-    display: none;
-  }
-
-  .track-row.playable.playing:hover .track-eq {
-    display: none;
-  }
-
-  .track-row.playable.playing:hover .track-pause {
-    display: block;
-  }
+  .track-row.playable:hover { background: rgba(255, 255, 255, 0.022); }
+  .track-row.playable:hover .track-number { display: none; }
+  .track-row.playable:hover .track-play { display: block; }
+  .track-row.playable.playing:hover .track-play,
+  .track-row.playable.playing:hover .track-eq { display: none; }
+  .track-row.playable.playing:hover .track-pause { display: block; }
 }
-
 
 /* Touch controls stay discoverable without hover, at any screen width. */
 @media (hover: none) and (pointer: coarse) {
-  .track-row.playable .track-number {
-    display: none;
-  }
-
-  .track-row.playable:not(.playing) .track-play {
-    display: block;
-  }
+  .track-row.playable .track-number { display: none; }
+  .track-row.playable:not(.playing) .track-play { display: block; }
 }
 
-
-/* =========================
-   Playing state
-   ========================= */
-
+/* Playing state */
 .track-row.playing .track-number,
-.track-row.playing .track-play {
-  display: none;
-}
-
+.track-row.playing .track-play { display: none; }
 .track-row.playing .track-title,
-.track-row.playing .track-control {
-  color: #9fbaff;
-}
-
-.track-row.playing .track-duration {
-  color: rgba(159, 186, 255, 0.80);
-}
-
-.track-row.playing .track-eq i {
-  background: #9fbaff;
-}
-
-.track-row.playing .track-eq {
-  display: flex;
-}
-
+.track-row.playing .track-control { color: #9fbaff; }
+.track-row.playing .track-duration { color: rgba(159, 186, 255, 0.80); }
+.track-row.playing .track-eq i { background: #9fbaff; }
+.track-row.playing .track-eq { display: flex; }
 
 /* Keyboard focus exposes the same actions as desktop hover. */
 .track-row.playable .track-control:focus-visible .track-number,
 .track-row.playable.playing .track-control:focus-visible .track-play,
-.track-row.playable.playing .track-control:focus-visible .track-eq {
-  display: none;
-}
-
+.track-row.playable.playing .track-control:focus-visible .track-eq { display: none; }
 .track-row.playable:not(.playing) .track-control:focus-visible .track-play,
-.track-row.playable.playing .track-control:focus-visible .track-pause {
-  display: block;
-}
+.track-row.playable.playing .track-control:focus-visible .track-pause { display: block; }
 
-
-/* =========================
-   Tiny 5-band equalizer
-   ========================= */
-
+/* Stereo 5-band equalizer: left above, right below. */
 .track-eq {
   display: none;
-
   width: 16px;
-  height: 13px;
+  height: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
 
+.eq-channel {
+  display: flex;
+  width: 100%;
+  height: 9px;
+  flex: none;
   align-items: flex-end;
   justify-content: center;
-
   gap: 1.5px;
 }
+
+/* Reverse growth direction, not the signal: this row receives channel R. */
+.eq-right { transform: scaleY(-1); }
 
 .track-eq i {
   width: 2px;
   height: 4px;
-  min-height: 3px;
+  min-height: 2px;
 
   background: rgba(207, 224, 255, 0.76);
 
@@ -970,7 +925,7 @@ button.track-control:focus-visible {
   }
 
   70% {
-    height: 11px;
+    height: 9px;
   }
 
   100% {
@@ -1002,7 +957,7 @@ button.track-control:focus-visible {
   }
 
   .track-eq i:nth-child(4) {
-    height: 11px;
+    height: 9px;
   }
 
   .track-eq i:nth-child(5) {
@@ -1045,8 +1000,8 @@ button.track-control:focus-visible {
 
   .track-eq {
     width: 15px;
-    height: 12px;
-    gap: 1.3px;
+    height: 20px;
+    gap: 2px;
   }
 }
 
@@ -1234,7 +1189,7 @@ button.track-control:focus-visible {
   height: 40px;
 }
 
-.lyrics-play svg { width: 20px; height: 20px; fill: currentColor; }
+.lyrics-play svg { width: 26px; height: 26px; flex: none; fill: currentColor; }
 .lyrics-pause-icon,
 .lyrics-player.playing .lyrics-play-icon { display: none; }
 .lyrics-player.playing .lyrics-eq { display: flex; }
@@ -1242,8 +1197,10 @@ button.track-control:focus-visible {
 .lyrics-player .lyrics-eq i { background: #9fbaff; }
 
 @media (hover: hover) and (pointer: fine) {
-  .lyrics-player.playing .lyrics-play:hover .lyrics-eq { display: none; }
-  .lyrics-player.playing .lyrics-play:hover .lyrics-pause-icon { display: block; }
+  .lyrics-player.playing .lyrics-play:hover .lyrics-eq,
+  .lyrics-player.playing .lyrics-transport:hover .lyrics-eq { display: none; }
+  .lyrics-player.playing .lyrics-play:hover .lyrics-pause-icon,
+  .lyrics-player.playing .lyrics-transport:hover .lyrics-pause-icon { display: block; }
 }
 
 .lyrics-player.playing .lyrics-play:focus-visible .lyrics-eq { display: none; }
@@ -1286,5 +1243,26 @@ button.track-control:focus-visible {
     margin-right: 22px;
     margin-bottom: 28px;
     font-size: 0.92rem;
+  }
+}
+
+/* Pointer feedback for playback buttons, including the active track. */
+@media (hover: hover) and (pointer: fine) {
+  .track-row.playable .track-control:hover,
+  .lyrics-player .lyrics-play:hover {
+    color: #fff;
+  }
+}
+
+/* Pause keeps the active-track blue, with quieter emphasis away from the button. */
+.track-pause,
+.lyrics-pause-icon {
+  color: rgba(159, 186, 255, 0.64);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .track-control:hover .track-pause,
+  .lyrics-play:hover .lyrics-pause-icon {
+    color: #9fbaff;
   }
 }
