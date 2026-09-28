@@ -792,7 +792,6 @@ button.track-control:focus-visible {
   min-width: 4ch;
   text-align: right;
   font-variant-numeric: tabular-nums;
-  padding-left: 0.35rem;
 
   color: rgba(240, 244, 255, 0.58);
 
@@ -975,18 +974,18 @@ button.track-control:focus-visible {
 
   .track-row {
     grid-template-columns:
-      20px
+      24px
       minmax(0, 1fr)
       auto;
 
-    gap: 0.55rem;
+    gap: 0.65rem;
 
     min-height: 44px;
     padding: 4px 0;
   }
 
   .track-control {
-    width: 20px;
+    width: 24px;
     height: 28px;
   }
 
@@ -996,7 +995,6 @@ button.track-control:focus-visible {
 
   .track-duration {
     font-size: 0.80rem;
-    padding-left: 0.2rem;
   }
 
   .track-eq {
