@@ -1388,3 +1388,37 @@ button.track-control:focus-visible {
 @media (max-width: 420px) {
   .lyrics-tools { margin-left: 26px; margin-right: 26px; }
 }
+
+/* Immediate, cancellable feedback while audio is starting or buffering. */
+.track-row.loading,
+.lyrics-player.loading { --track-title-color: #9fbaff; }
+.lyrics-player.loading h2,
+.track-row.loading .track-control,
+.lyrics-player.loading .lyrics-play { color: #9fbaff; }
+.playback-loader { display: none; }
+.track-row.loading .track-control > :not(.playback-loader),
+.lyrics-player.loading .lyrics-play > :not(.playback-loader) { display: none !important; }
+.track-row.loading .playback-loader,
+.lyrics-player.loading .playback-loader {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  flex: none;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+.playback-loader::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid rgba(159, 186, 255, 0.25);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: playback-loading 0.8s linear infinite;
+}
+@keyframes playback-loading { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .playback-loader::before { animation: none; }
+}

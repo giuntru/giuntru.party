@@ -2024,6 +2024,8 @@
         const syncLyricsPlayer = () => {
           const sourceSeek = lyricsTrack.querySelector('.track-seek');
           lyricsPlayer.classList.toggle('playing', lyricsTrack.classList.contains('playing'));
+          lyricsPlayer.classList.toggle('loading', lyricsTrack.classList.contains('loading'));
+          lyricsPlay.setAttribute('aria-busy', String(lyricsTrack.classList.contains('loading')));
           lyricsPlayer.classList.toggle('reactive-eq', Boolean(analyser));
           lyricsPlay.setAttribute('aria-label', lyricsTrack.querySelector('.track-control').getAttribute('aria-label'));
           lyricsSeek.max = sourceSeek.max;
@@ -2357,9 +2359,24 @@
           opener?.focus({ preventScroll: true });
         });
 
+        document.querySelectorAll('.track-control, .lyrics-play').forEach(button => {
+          const loader = document.createElement('span');
+          loader.className = 'playback-loader';
+          loader.setAttribute('aria-hidden', 'true');
+          button.append(loader);
+        });
+
+        const setLoading = (loading) => {
+          track.classList.toggle('loading', loading);
+          control.setAttribute('aria-busy', String(loading));
+          control.setAttribute('aria-label', `${loading ? 'Cancel loading' : track.classList.contains('playing') ? 'Pause' : 'Play'} ${title}`);
+          syncLyricsPlayer();
+        };
+
         const setPlaying = (playing) => {
+          if (playing) setLoading(false);
           track.classList.toggle('playing', playing);
-          control.setAttribute('aria-label', `${playing ? 'Pause' : 'Play'} ${title}`);
+          control.setAttribute('aria-label', `${track.classList.contains('loading') ? 'Cancel loading' : playing ? 'Pause' : 'Play'} ${title}`);
           if (playing) startMeter();
           else stopMeter();
           syncLyricsPlayer();
@@ -2414,10 +2431,17 @@
 
         async function activateTrack(row, automatic = false) {
             const currentRequest = ++request;
+            if (!automatic && row === track && track.classList.contains('loading')) {
+              setLoading(false);
+              audioPlayer.pause();
+              setPlaying(false);
+              return;
+            }
             if (!automatic && (row !== track || audioPlayer.ended)) {
               albumPlayback.get(row.closest('.album')).remaining = null;
             }
             if (row !== track) {
+              setLoading(false);
               audioPlayer.pause();
               setPlaying(false);
               seek.disabled = true;
@@ -2429,6 +2453,7 @@
               title = row.querySelector('.track-title').textContent.trim();
               bars = [...row.querySelectorAll('.track-eq i')];
               audioPlayer.src = row.dataset.src;
+              setLoading(true);
               if (lyricsDialog.open && lyricsTrack !== row) {
                 await showLyrics(row.querySelector('.lyrics-open'), true);
                 // A later selection supersedes this pending playback request.
@@ -2441,13 +2466,15 @@
               return;
             }
 
+            setLoading(true);
             try {
               const meterReady = prepareMeter();
               const playbackReady = audioPlayer.play();
               await Promise.all([meterReady, playbackReady]);
             } catch (error) {
               // Ignore an earlier play request cancelled by a pause or track change.
-              if (currentRequest === request && error.name !== 'AbortError') {
+              if (currentRequest === request) {
+                setLoading(false);
                 audioPlayer.pause();
                 setPlaying(false);
                 control.setAttribute('aria-label', `Playback unavailable. Retry ${title}`);
@@ -2465,6 +2492,9 @@
         });
         audioPlayer.addEventListener('seeked', resumeLyricsFollow);
 
+        audioPlayer.addEventListener('waiting', () => {
+          if (!audioPlayer.paused) setLoading(true);
+        });
         audioPlayer.addEventListener('playing', () => {
           if (!audioPlayer.paused) setPlaying(true);
         });
@@ -2472,6 +2502,7 @@
           if (audioPlayer.paused) setPlaying(false);
         });
         audioPlayer.addEventListener('ended', () => {
+          setLoading(false);
           setPlaying(false);
           syncProgress();
           const next = nextAlbumTrack();
@@ -2481,6 +2512,8 @@
           }
         });
         audioPlayer.addEventListener('error', () => {
+          ++request;
+          setLoading(false);
           seek.disabled = true;
           showTime(track, totalDurations.get(track));
           setPlaying(false);
