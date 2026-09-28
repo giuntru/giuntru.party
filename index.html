@@ -1895,126 +1895,16 @@
         audioPlayer.src = track.dataset.src;
 
         let seek = track.querySelector('.track-seek');
-        let bars = [...track.querySelectorAll('.track-eq i')];
-        const panelBars = [...document.querySelectorAll('.lyrics-eq i')];
         const lyricsDialog = document.querySelector('.lyrics-dialog');
         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-        let audioContext;
-        let analyser;
-        let frequencies;
-        let bands;
-        let setupPromise;
         let request = 0;
-        let frame = 0;
-        let lastUpdate = 0;
-        const peaks = new Float32Array(5).fill(-45);
-        const levels = new Float32Array(10);
-        const bandEnergy = new Float32Array(10);
 
-        const stopMeter = () => {
-          cancelAnimationFrame(frame);
-          frame = 0;
-          bars.forEach(bar => bar.style.removeProperty('height'));
-          panelBars.forEach(bar => bar.style.removeProperty('height'));
-          peaks.fill(-45);
-          levels.fill(0);
-        };
-
-        const startMeter = () => {
-          stopMeter();
-          if (!analyser || audioPlayer.paused || audioPlayer.ended ||
-              document.hidden || reducedMotion.matches) return;
-
-          const draw = (time) => {
-            // Read a small spectrum at most 25 times per second.
-            if (time - lastUpdate >= 40) {
-              lastUpdate = time;
-              analyser.forEach((meter, channel) => {
-                meter.getFloatFrequencyData(frequencies[channel]);
-                bands.forEach(([from, to], band) => {
-                  let power = 0;
-                  for (let bin = from; bin < to; bin++) {
-                    power += Math.pow(10, frequencies[channel][bin] / 10);
-                  }
-                  bandEnergy[channel * 5 + band] =
-                    10 * Math.log10(Math.max(power / (to - from), 1e-12));
-                });
-              });
-              // A shared scale preserves real level differences between L and R.
-              peaks.forEach((peak, band) => {
-                peaks[band] = Math.max(-60, bandEnergy[band], bandEnergy[band + 5], peak - 0.04);
-              });
-              bars.forEach((bar, index) => {
-                const decibels = bandEnergy[index];
-                const target = decibels < -80 ? 0 :
-                  Math.max(0, Math.min(1, (decibels - peaks[index % 5] + 20) / 20));
-                const response = target > levels[index] ? 0.7 : 0.35;
-                levels[index] += (target - levels[index]) * response;
-                bar.style.height = `${2 + levels[index] * 7}px`;
-                if (lyricsDialog.open && track === lyricsTrack) panelBars[index].style.height = bar.style.height;
-              });
-            }
-            frame = requestAnimationFrame(draw);
-          };
-          frame = requestAnimationFrame(draw);
-        };
-
-        const prepareMeter = () => {
-          // file:// media cannot safely pass through Web Audio's origin checks.
-          if (location.protocol === 'file:') return;
-          if (setupPromise) {
-            // Mobile browsers may suspend the context after an interruption.
-            if (audioContext && audioContext.state === 'suspended') {
-              return audioContext.resume();
-            }
-            return setupPromise;
-          }
-          setupPromise = (async () => {
-            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-            if (!AudioContextClass) return;
-            let source;
-            try {
-              audioContext = new AudioContextClass();
-              await audioContext.resume();
-              const meters = Array.from({ length: 2 }, () => {
-                const meter = audioContext.createAnalyser();
-                meter.fftSize = 1024;
-                meter.smoothingTimeConstant = 0.35;
-                return meter;
-              });
-              const limits = [45, 180, 600, 2000, 6000, Math.min(14000, audioContext.sampleRate / 2)];
-              const binWidth = audioContext.sampleRate / meters[0].fftSize;
-              const ranges = limits.slice(0, -1).map((limit, index) => [
-                Math.floor(limit / binWidth),
-                Math.min(meters[0].frequencyBinCount, Math.floor(limits[index + 1] / binWidth))
-              ]);
-              const splitter = audioContext.createChannelSplitter(2);
-              source = audioContext.createMediaElementSource(audioPlayer);
-              // Playback stays stereo; only the meter branch is split into L/R.
-              source.connect(audioContext.destination);
-              source.connect(splitter);
-              meters.forEach((meter, channel) => splitter.connect(meter, channel));
-              analyser = meters;
-              frequencies = meters.map(meter => new Float32Array(meter.frequencyBinCount));
-              bands = ranges;
-              tracks.forEach(row => row.classList.add('reactive-eq'));
-              startMeter();
-            } catch (error) {
-              // Unsupported analysis keeps the existing CSS animation.
-              if (!source && audioContext) {
-                audioContext.close().catch(() => {});
-                audioContext = null;
-              }
-            }
-          })();
-          return setupPromise;
-        };
-
+        // Native media playback keeps audio and the lyrics clock on the same path.
+        // The bars are a decorative playback indicator, not a spectrum analyser.
         document.addEventListener('visibilitychange', () => {
-          tracks.forEach(row => row.classList.toggle('meter-hidden', document.hidden));
-          startMeter();
+          document.querySelectorAll('.track-row, .lyrics-player').forEach(row =>
+            row.classList.toggle('meter-hidden', document.hidden));
         });
-        reducedMotion.addEventListener('change', startMeter);
 
         let lyricsTrack = tracks[0];
         const lyricsPlayer = document.querySelector('.lyrics-player');
@@ -2026,7 +1916,6 @@
           lyricsPlayer.classList.toggle('playing', lyricsTrack.classList.contains('playing'));
           lyricsPlayer.classList.toggle('loading', lyricsTrack.classList.contains('loading'));
           lyricsPlay.setAttribute('aria-busy', String(lyricsTrack.classList.contains('loading')));
-          lyricsPlayer.classList.toggle('reactive-eq', Boolean(analyser));
           lyricsPlay.setAttribute('aria-label', lyricsTrack.querySelector('.track-control').getAttribute('aria-label'));
           lyricsSeek.max = sourceSeek.max;
           lyricsSeek.value = sourceSeek.value;
@@ -2297,9 +2186,6 @@
           lyricsText.setAttribute('aria-label', `${trackTitle} lyrics`);
           lyricsText.replaceChildren(...paragraphs);
           if (lrc) lyricsCues = parseLyricsCues(lrc, [...lyricsText.querySelectorAll('.lyrics-line')]);
-          panelBars.forEach((bar, index) => {
-            bar.style.height = row.querySelectorAll('.track-eq i')[index].style.height;
-          });
           syncLyricsPlayer();
           if (!lyricsDialog.open) {
             previousOverflow = document.body.style.overflow;
@@ -2377,8 +2263,6 @@
           if (playing) setLoading(false);
           track.classList.toggle('playing', playing);
           control.setAttribute('aria-label', `${track.classList.contains('loading') ? 'Cancel loading' : playing ? 'Pause' : 'Play'} ${title}`);
-          if (playing) startMeter();
-          else stopMeter();
           syncLyricsPlayer();
         };
 
@@ -2451,7 +2335,6 @@
               seek = row.querySelector('.track-seek');
               control = row.querySelector('button.track-control');
               title = row.querySelector('.track-title').textContent.trim();
-              bars = [...row.querySelectorAll('.track-eq i')];
               audioPlayer.src = row.dataset.src;
               setLoading(true);
               if (lyricsDialog.open && lyricsTrack !== row) {
@@ -2468,9 +2351,7 @@
 
             setLoading(true);
             try {
-              const meterReady = prepareMeter();
-              const playbackReady = audioPlayer.play();
-              await Promise.all([meterReady, playbackReady]);
+              await audioPlayer.play();
             } catch (error) {
               // Ignore an earlier play request cancelled by a pause or track change.
               if (currentRequest === request) {

@@ -856,7 +856,7 @@ button.track-control:focus-visible {
   gap: 1.5px;
 }
 
-/* Reverse growth direction, not the signal: this row receives channel R. */
+/* Mirror the lower row of the decorative playback indicator. */
 .eq-right { transform: scaleY(-1); }
 
 .track-eq i {
@@ -877,12 +877,8 @@ button.track-control:focus-visible {
 }
 
 
-/* Real audio supplies heights; CSS remains the unsupported-browser fallback. */
-.track-row.reactive-eq .track-eq i {
-  animation: none;
-}
-
-.track-row.meter-hidden .track-eq i {
+.track-row.meter-hidden .track-eq i,
+.lyrics-player.meter-hidden .lyrics-eq i {
   animation-play-state: paused;
 }
 
@@ -1209,7 +1205,6 @@ button.track-control:focus-visible {
 .lyrics-pause-icon,
 .lyrics-player.playing .lyrics-play-icon { display: none; }
 .lyrics-player.playing .lyrics-eq { display: flex; }
-.lyrics-player.reactive-eq .lyrics-eq i { animation: none; }
 .lyrics-player .lyrics-eq i { background: #9fbaff; }
 
 @media (hover: hover) and (pointer: fine) {
