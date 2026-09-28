@@ -1216,7 +1216,7 @@ button.track-control:focus-visible {
   overscroll-behavior: contain;
   margin: 36px 32px 36px 36px;
   padding: 12px 12px 12px 0;
-  color: rgba(240, 244, 255, 0.82);
+  color: rgba(240, 244, 255, 0.70);
   font-size: 0.96rem;
   line-height: 1.85;
   scrollbar-width: thin;
@@ -1270,10 +1270,6 @@ button.track-control:focus-visible {
 }
 
 /* Highlight the current sung line without moving the reader's scroll position. */
-/* A slight contrast reduction keeps surrounding verses easy to read. */
-.lyrics-text:has(.lyrics-line.is-current) .lyrics-line:not(.is-current) {
-  color: rgba(240, 244, 255, 0.70);
-}
 .lyrics-line.is-current { color: #9fbaff; }
 
 .lyrics-tools {
@@ -1316,7 +1312,7 @@ button.track-control:focus-visible {
   margin: 1.4rem 0 0.8rem;
 }
 .album .tracklist-header h3 { margin: 0 0 0 0.1rem; }
-.album-playback { display: flex; align-items: center; gap: 7px; }
+.album-playback { display: flex; align-items: center; gap: 7px; margin-inline-start: auto; }
 .album-modes { display: flex; gap: 3px; }
 .album-mode,
 .album-shuffle {
