@@ -1781,7 +1781,13 @@
     </footer>
     <dialog class="lyrics-dialog" id="track-lyrics" aria-labelledby="lyrics-title" tabindex="-1" autofocus>
       <div class="lyrics-dialog-header">
-        <p class="lyrics-caption">Living Shape · Lyrics</p>
+        <p class="lyrics-caption">Living Shape</p>
+        <div class="lyrics-modes"></div>
+        <div class="lyrics-controls" role="group" aria-label="Playback controls"><button class="lyrics-nav lyrics-prev" type="button" aria-label="Previous track"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15.4" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 9h2v14h-2zM22 9v14l-9-7z"/></svg></button>          <button class="lyrics-play" type="button" aria-label="Play Still Moving">
+            <svg class="lyrics-play-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15.4" fill="none" stroke="currentColor" stroke-width="1.2"></circle><path transform="translate(4.333333 4)" d="M8 5v14l11-7z"></path></svg>
+            <svg class="lyrics-pause-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15.4" fill="none" stroke="currentColor" stroke-width="1.2"></circle><path transform="translate(4 4)" d="M7 5h4v14H7zM13 5h4v14h-4z"></path></svg>
+          </button>
+<button class="lyrics-nav lyrics-next" type="button" aria-label="Next track"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15.4" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M20 9h2v14h-2zM10 9v14l9-7z"/></svg></button></div>
         <button class="lyrics-close" type="button" aria-label="Close lyrics">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
         </button>
@@ -1790,11 +1796,7 @@
         <img class="lyrics-cover" src="Living Shape Cover WEB.png" width="64" height="64" alt="">
         <h2 id="lyrics-title">Still Moving</h2>
         <div class="lyrics-transport">
-          <button class="lyrics-play" type="button" aria-label="Play Still Moving">
-            <svg class="lyrics-play-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15.4" fill="none" stroke="currentColor" stroke-width="1.2"></circle><path transform="translate(4.333333 4)" d="M8 5v14l11-7z"></path></svg>
-            <svg class="lyrics-pause-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15.4" fill="none" stroke="currentColor" stroke-width="1.2"></circle><path transform="translate(4 4)" d="M7 5h4v14H7zM13 5h4v14h-4z"></path></svg>
             <span class="track-eq lyrics-eq" aria-hidden="true"><span class="eq-channel eq-left"><i></i><i></i><i></i><i></i><i></i></span><span class="eq-channel eq-right"><i></i><i></i><i></i><i></i><i></i></span></span>
-          </button>
           <input class="track-seek lyrics-seek" type="range" min="0" max="100" step="0.1" value="0"
             aria-label="Seek Still Moving in lyrics panel" aria-valuetext="0:00" disabled>
           <span class="track-duration lyrics-time">2:23</span>
@@ -1821,7 +1823,7 @@
           const name = rows[0].dataset.src.split('/')[1];
           album.querySelector('.album-modes').setAttribute('aria-label', `${name} playback mode`);
           shuffle.setAttribute('aria-label', `Shuffle ${name}`);
-          const state = { rows, mode: 'single', shuffle: false, remaining: null };
+          const state = { rows, mode: 'single', shuffle: false, remaining: null, history: [], cursor: -1 };
           albumPlayback.set(album, state);
           const syncShuffleAvailability = () => {
             const compatible = ['album', 'repeat-all'].includes(state.mode);
@@ -1834,12 +1836,14 @@
           const selectMode = button => {
             state.mode = button.dataset.mode;
             state.remaining = null;
+            state.history = []; state.cursor = -1;
             syncShuffleAvailability();
             modes.forEach(mode => {
               const selected = mode === button;
               mode.setAttribute('aria-checked', String(selected));
               mode.tabIndex = selected ? 0 : -1;
             });
+            syncLyricsPlayer();
           };
           modes.forEach((button, index) => {
             button.addEventListener('click', () => selectMode(button));
@@ -1857,7 +1861,9 @@
             if (shuffle.disabled) return;
             state.shuffle = !state.shuffle;
             state.remaining = null;
+            state.history = []; state.cursor = -1;
             shuffle.setAttribute('aria-pressed', String(state.shuffle));
+            syncLyricsPlayer();
           });
         });
         function shuffled(rows) {
@@ -1868,21 +1874,40 @@
           }
           return result;
         }
-        function nextAlbumTrack() {
-          const state = albumPlayback.get(track.closest('.album'));
-          if (state.mode === 'single') return null;
-          if (state.mode === 'repeat-one') return track;
-          if (state.remaining === null) {
-            state.remaining = state.shuffle ? shuffled(state.rows.filter(row => row !== track)) :
-              state.rows.slice(state.rows.indexOf(track) + 1);
+        function ensureHistory(state, row) {
+          if (state.history[state.cursor] !== row) {
+            state.history = [row]; state.cursor = 0; state.remaining = null;
           }
+        }
+        function nextAlbumTrack(manual = false, row = track) {
+          const state = albumPlayback.get(row.closest('.album'));
+          if (!manual && state.mode === 'single') return null;
+          if (!manual && state.mode === 'repeat-one') return row;
+          if (!state.shuffle) {
+            const index = state.rows.indexOf(row) + 1;
+            return state.rows[index] || (state.mode === 'repeat-all' ? state.rows[0] : null);
+          }
+          ensureHistory(state, row);
+          if (state.cursor + 1 < state.history.length) return state.history[++state.cursor];
+          if (state.remaining === null) state.remaining = shuffled(state.rows.filter(item => item !== row));
           if (!state.remaining.length && state.mode === 'repeat-all') {
-            state.remaining = state.shuffle ? shuffled(state.rows) : [...state.rows];
-            if (state.shuffle && state.remaining[0] === track && state.remaining.length > 1) {
+            state.remaining = shuffled(state.rows);
+            if (state.remaining[0] === row && state.remaining.length > 1) {
               [state.remaining[0], state.remaining[1]] = [state.remaining[1], state.remaining[0]];
             }
           }
-          return state.remaining.shift() || null;
+          const next = state.remaining.shift() || null;
+          if (next) { state.history.push(next); state.cursor++; }
+          return next;
+        }
+        function previousAlbumTrack(row) {
+          const state = albumPlayback.get(row.closest('.album'));
+          if (state.shuffle) {
+            ensureHistory(state, row);
+            return state.cursor > 0 ? state.history[--state.cursor] : null;
+          }
+          return state.rows[state.rows.indexOf(row) - 1] ||
+            (state.mode === 'repeat-all' ? state.rows.at(-1) : null);
         }
 
         const totalDurations = new Map(tracks.map(row =>
@@ -1909,9 +1934,47 @@
         let lyricsTrack = tracks[0];
         const lyricsPlayer = document.querySelector('.lyrics-player');
         const lyricsPlay = document.querySelector('.lyrics-play');
+        const lyricsControls = document.querySelector('.lyrics-controls');
+        const lyricsPrev = document.querySelector('.lyrics-prev');
+        const lyricsNext = document.querySelector('.lyrics-next');
         const lyricsSeek = document.querySelector('.lyrics-seek');
         const lyricsTime = document.querySelector('.lyrics-time');
+        const lyricsModes = document.querySelector('.lyrics-modes');
+        const modeControls = document.querySelector('.album-playback').cloneNode(true);
+        lyricsModes.append(modeControls);
+        const popupModes = [...lyricsModes.querySelectorAll('.album-mode')];
+        const popupShuffle = lyricsModes.querySelector('.album-shuffle');
+        popupModes.forEach((button, index) => {
+          button.addEventListener('click', () => lyricsTrack.closest('.album').querySelector(`.album-mode[data-mode="${button.dataset.mode}"]`).click());
+          button.addEventListener('keydown', event => {
+            const direction = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[event.key];
+            if (!direction && !['Home', 'End'].includes(event.key)) return;
+            event.preventDefault();
+            const next = event.key === 'Home' ? 0 : event.key === 'End' ? popupModes.length - 1 :
+              (index + direction + popupModes.length) % popupModes.length;
+            popupModes[next].click(); popupModes[next].focus();
+          });
+        });
+        popupShuffle.addEventListener('click', () => lyricsTrack.closest('.album').querySelector('.album-shuffle').click());
         const syncLyricsPlayer = () => {
+          const state = albumPlayback.get(lyricsTrack.closest('.album'));
+          popupModes.forEach(button => {
+            const selected = button.dataset.mode === state.mode;
+            button.setAttribute('aria-checked', String(selected));
+            button.tabIndex = selected ? 0 : -1;
+          });
+          const sourceShuffle = lyricsTrack.closest('.album').querySelector('.album-shuffle');
+          popupShuffle.disabled = sourceShuffle.disabled;
+          popupShuffle.setAttribute('aria-pressed', String(state.shuffle));
+          popupShuffle.setAttribute('aria-label', sourceShuffle.getAttribute('aria-label'));
+          popupShuffle.title = sourceShuffle.title;
+          lyricsModes.querySelector('.album-modes').setAttribute('aria-label', lyricsTrack.closest('.album').querySelector('.album-modes').getAttribute('aria-label'));
+          const index = state.rows.indexOf(lyricsTrack);
+          const hasHistory = state.history[state.cursor] === lyricsTrack;
+          lyricsPrev.disabled = (state.shuffle ? !hasHistory || state.cursor === 0 : index === 0 && state.mode !== 'repeat-all');
+          lyricsNext.disabled = (state.shuffle ? hasHistory && state.cursor === state.history.length - 1 && state.remaining?.length === 0 && state.mode !== 'repeat-all' : index === state.rows.length - 1 && state.mode !== 'repeat-all');
+          lyricsControls.classList.toggle('playing', lyricsTrack.classList.contains('playing'));
+          lyricsControls.classList.toggle('loading', lyricsTrack.classList.contains('loading'));
           const sourceSeek = lyricsTrack.querySelector('.track-seek');
           lyricsPlayer.classList.toggle('playing', lyricsTrack.classList.contains('playing'));
           lyricsPlayer.classList.toggle('loading', lyricsTrack.classList.contains('loading'));
@@ -1927,6 +1990,12 @@
           syncLyricsLine();
           followLyricsLine();
         };
+        async function navigateLyrics(direction) {
+          const next = direction < 0 ? previousAlbumTrack(lyricsTrack) : nextAlbumTrack(true, lyricsTrack);
+          if (next) await activateTrack(next, true);
+        }
+        lyricsPrev.addEventListener('click', () => navigateLyrics(-1));
+        lyricsNext.addEventListener('click', () => navigateLyrics(1));
         lyricsPlay.addEventListener('click', () => lyricsTrack.querySelector('.track-control').click());
         lyricsSeek.addEventListener('input', () => {
           if (lyricsSeek.disabled) return;
@@ -1986,7 +2055,7 @@
           return Math.max(0, Math.min(lyricsScrollLimit, position));
         }
         function canFollowLyrics() {
-          return followingLyrics && lyricsDialog.open && !lyricsDialog.classList.contains('is-closing') && !lyricsDialog.classList.contains('is-switching') && track === lyricsTrack &&
+          return followingLyrics && lyricsDialog.open && !lyricsDialog.classList.contains('is-closing') && track === lyricsTrack &&
             lyricsScrollAnchors.length > 0 && !document.hidden;
         }
         function followLyricsLine(force = false) {
@@ -2091,30 +2160,9 @@
         document.addEventListener('pointerdown', () => {
           openers.forEach(button => button.classList.remove('keyboard-focus'));
         });
-        let lyricsContentAnimations = [];
-        function resetLyricsContentFade() {
-          lyricsContentAnimations.forEach(animation => animation.cancel());
-          lyricsContentAnimations = [];
-          lyricsDialog.classList.remove('is-switching');
-        }
-        async function fadeLyricsContent(entering, signal) {
-          lyricsContentAnimations.forEach(animation => animation.cancel());
-          const elements = [...lyricsDialog.querySelectorAll('.lyrics-caption, .lyrics-player, .lyrics-text, .lyrics-follow:not([hidden])')];
-          const animations = elements.map(element => element.animate(
-            [{ opacity: entering ? 0 : 1 }, { opacity: entering ? 1 : 0 }],
-            { duration: entering ? 800 : 560, easing: entering ? 'ease-out' : 'ease-in', fill: 'forwards' }
-          ));
-          lyricsContentAnimations = animations;
-          const cancel = () => animations.forEach(animation => animation.cancel());
-          signal.addEventListener('abort', cancel, { once: true });
-          try { await Promise.all(animations.map(animation => animation.finished)); }
-          catch { /* A newer track or a close request superseded this transition. */ }
-          finally { signal.removeEventListener('abort', cancel); }
-        }
         async function showLyrics(button, keepOpen = false) {
           if (lyricsDialog.classList.contains('is-closing')) return;
           lyricsRequest?.abort();
-          resetLyricsContentFade();
           const request = new AbortController();
           lyricsRequest = request;
           const row = button.closest('.track-row');
@@ -2124,7 +2172,23 @@
           const path = row.dataset.src.replace(/\.mp3$/i, '.txt');
           let paragraphs = [];
           let lrc = '';
-          if (keepOpen) lyricsPlay.disabled = true;
+          if (keepOpen && lyricsDialog.open) {
+            lyricsDialog.style.height = `${lyricsDialog.getBoundingClientRect().height}px`;
+            lyricsTrack = row;
+            opener = button;
+            stopLyricsScroll();
+            lyricsCues = []; lyricsScrollAnchors = []; activeLyricsLine = null;
+            followingLyrics = true;
+            setFollowVisible(false);
+            document.querySelector('.lyrics-caption').textContent = album;
+            document.querySelector('.lyrics-cover').src = cover.getAttribute('src');
+            document.querySelector('#lyrics-title').textContent = trackTitle;
+            lyricsSeek.setAttribute('aria-label', `Seek ${trackTitle} in lyrics panel`);
+            lyricsText.setAttribute('aria-label', `${trackTitle} lyrics`);
+            lyricsText.setAttribute('aria-busy', 'true');
+            lyricsText.replaceChildren();
+            syncLyricsPlayer();
+          }
           try {
             if (location.protocol === 'file:') throw new Error('local-file');
             const timingPath = row.dataset.lyricsSync;
@@ -2161,15 +2225,6 @@
           image.src = cover.getAttribute('src');
           await image.decode().catch(() => {});
           if (request !== lyricsRequest || request.signal.aborted || (keepOpen && !lyricsDialog.open)) return;
-          const transitioning = keepOpen && lyricsDialog.open && row !== lyricsTrack && !reducedMotion.matches;
-          if (transitioning) {
-            // Preserve the frame while only the fully loaded contents change.
-            lyricsDialog.style.height = `${lyricsDialog.getBoundingClientRect().height}px`;
-            lyricsDialog.classList.add('is-switching');
-            stopLyricsScroll();
-            await fadeLyricsContent(false, request.signal);
-            if (request !== lyricsRequest || request.signal.aborted || !lyricsDialog.open) return;
-          }
           // Swap a complete panel in one frame, including automatic track changes.
           opener = button;
           lyricsTrack = row;
@@ -2179,12 +2234,13 @@
           activeLyricsLine = null;
           followingLyrics = true;
           setFollowVisible(false);
-          document.querySelector('.lyrics-caption').textContent = `${album} · Lyrics`;
+          document.querySelector('.lyrics-caption').textContent = album;
           document.querySelector('.lyrics-cover').src = image.src;
           document.querySelector('#lyrics-title').textContent = trackTitle;
           lyricsSeek.setAttribute('aria-label', `Seek ${trackTitle} in lyrics panel`);
           lyricsText.setAttribute('aria-label', `${trackTitle} lyrics`);
           lyricsText.replaceChildren(...paragraphs);
+          lyricsText.removeAttribute('aria-busy');
           if (lrc) lyricsCues = parseLyricsCues(lrc, [...lyricsText.querySelectorAll('.lyrics-line')]);
           syncLyricsPlayer();
           if (!lyricsDialog.open) {
@@ -2195,13 +2251,7 @@
           lyricsText.scrollTop = 0;
           measureLyricsScroll();
           followLyricsLine(true);
-          if (transitioning) {
-            await fadeLyricsContent(true, request.signal);
-            if (request !== lyricsRequest || request.signal.aborted) return;
-            resetLyricsContentFade();
-            followLyricsLine(true);
-          }
-          lyricsPlay.disabled = false;
+          syncLyricsPlayer();
         }
         openers.forEach(button => button.addEventListener('click', () => showLyrics(button)));
         let lyricsCloseTimer;
@@ -2236,11 +2286,10 @@
         lyricsDialog.addEventListener('close', () => {
           clearTimeout(lyricsCloseTimer);
           lyricsDialog.classList.remove('is-closing');
-          resetLyricsContentFade();
           lyricsDialog.style.removeProperty('height');
           stopLyricsScroll();
           lyricsRequest?.abort();
-          lyricsPlay.disabled = false;
+          syncLyricsPlayer();
           document.body.style.overflow = previousOverflow;
           opener?.focus({ preventScroll: true });
         });
@@ -2322,7 +2371,8 @@
               return;
             }
             if (!automatic && (row !== track || audioPlayer.ended)) {
-              albumPlayback.get(row.closest('.album')).remaining = null;
+              const state = albumPlayback.get(row.closest('.album'));
+              state.remaining = null; state.history = [row]; state.cursor = 0;
             }
             if (row !== track) {
               setLoading(false);
@@ -2337,21 +2387,20 @@
               title = row.querySelector('.track-title').textContent.trim();
               audioPlayer.src = row.dataset.src;
               setLoading(true);
-              if (lyricsDialog.open && lyricsTrack !== row) {
-                await showLyrics(row.querySelector('.lyrics-open'), true);
-                // A later selection supersedes this pending playback request.
-                if (currentRequest !== request) return;
-              }
               syncLyricsPlayer();
-            } else if (!audioPlayer.paused) {
+            } else if (!automatic && !audioPlayer.paused) {
               audioPlayer.pause();
               setPlaying(false);
               return;
             }
 
             setLoading(true);
+            // Start media in the click gesture; fetching lyrics must not delay playback.
+            const refreshLyrics = lyricsDialog.open && lyricsTrack !== row;
             try {
-              await audioPlayer.play();
+              const playback = audioPlayer.play();
+              if (refreshLyrics) void showLyrics(row.querySelector('.lyrics-open'), true);
+              await playback;
             } catch (error) {
               // Ignore an earlier play request cancelled by a pause or track change.
               if (currentRequest === request) {

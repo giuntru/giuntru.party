@@ -1088,7 +1088,7 @@ button.track-control:focus-visible {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 24px 24px 0 36px;
+  padding: 28px 24px 0 36px;
 }
 
 .lyrics-caption {
@@ -1194,31 +1194,33 @@ button.track-control:focus-visible {
   cursor: pointer;
 }
 
-.lyrics-play::after {
-  content: "";
-  position: absolute;
-  width: 40px;
-  height: 40px;
-}
-
 .lyrics-play svg { width: 24px; height: 24px; flex: none; fill: currentColor; }
-.lyrics-pause-icon,
-.lyrics-player.playing .lyrics-play-icon { display: none; }
-.lyrics-player.playing .lyrics-eq { display: flex; }
-.lyrics-player .lyrics-eq i { background: #9fbaff; }
-
-@media (hover: hover) and (pointer: fine) {
-  .lyrics-player.playing .lyrics-play:hover .lyrics-eq,
-  .lyrics-player.playing .lyrics-transport:hover .lyrics-eq { display: none; }
-  .lyrics-player.playing .lyrics-play:hover .lyrics-pause-icon,
-  .lyrics-player.playing .lyrics-transport:hover .lyrics-pause-icon { display: block; }
+.lyrics-controls { display: flex; align-items: center; gap: 4px; flex: none; }
+.lyrics-controls .lyrics-play, .lyrics-nav { width: 33.7px; height: 40px; }
+/* Keep the layout spacing, but limit hit testing to the visible circles. */
+.lyrics-controls .lyrics-play { clip-path: circle(12px at 50% 50%); }
+.lyrics-controls .lyrics-nav { clip-path: circle(11px at 50% 50%); }
+.lyrics-controls button:focus-visible { outline: none; }
+.lyrics-controls button:focus-visible svg circle { stroke: #f0f4ff; stroke-width: 2.4; }
+.lyrics-nav { display: grid; place-items: center; border: 0; padding: 0; background: none; color: rgba(207,224,255,.64); cursor: pointer; }
+.lyrics-nav svg { width: 22px; height: 22px; fill: currentColor; }
+.lyrics-nav:disabled { opacity: .3; cursor: default; }
+.lyrics-nav:focus-visible { outline: 1px solid #cfe0ff; outline-offset: -2px; border-radius: 50%; }
+.lyrics-pause-icon, .lyrics-controls.playing .lyrics-play-icon { display: none; }
+.lyrics-controls.playing .lyrics-pause-icon { display: block; }
+.lyrics-controls .lyrics-play { color: rgba(207,224,255,.64); }
+.lyrics-controls .lyrics-play:hover, .lyrics-nav:not(:disabled):hover { color: #f0f4ff; }
+.lyrics-player .lyrics-eq { display: flex; flex: none; opacity: 1; }
+.lyrics-player .lyrics-eq i { background: var(--track-title-color); animation-play-state: paused; }
+.lyrics-player.playing:not(.loading):not(.meter-hidden) .lyrics-eq i { animation-play-state: running; }
+.lyrics-player.playing h2, .lyrics-player.playing .lyrics-time { color: #9fbaff; }
+.lyrics-dialog-header { padding-right: 30px; }
+@media (max-width: 420px) {
+  .lyrics-dialog-header { gap: 4px; padding-right: 18px; }
+  .lyrics-controls { gap: 0; }
+  .lyrics-controls .lyrics-play, .lyrics-nav { width: 34.9px; height: 44px; }
+  .lyrics-caption { min-width: 0; }
 }
-
-.lyrics-player.playing .lyrics-play:focus-visible .lyrics-eq { display: none; }
-.lyrics-player.playing .lyrics-play:focus-visible .lyrics-pause-icon { display: block; }
-.lyrics-player.playing h2,
-.lyrics-player.playing .lyrics-play,
-.lyrics-player.playing .lyrics-time { color: #9fbaff; }
 
 .lyrics-text {
   min-height: 0;
@@ -1238,7 +1240,7 @@ button.track-control:focus-visible {
 .lyrics-text p:last-child { margin-bottom: 0; }
 
 @media (max-width: 420px) {
-  .lyrics-dialog-header { padding: 20px 14px 0 26px; }
+  .lyrics-dialog-header { padding: 24px 14px 0 26px; }
   .lyrics-player {
     grid-template-columns: 67.2px minmax(0, 1fr);
     column-gap: 14px;
@@ -1267,14 +1269,12 @@ button.track-control:focus-visible {
 }
 
 /* Pause keeps the active-track blue, with quieter emphasis away from the button. */
-.track-pause,
-.lyrics-pause-icon {
+.track-pause {
   color: rgba(159, 186, 255, 0.64);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .track-control:hover .track-pause,
-  .lyrics-play:hover .lyrics-pause-icon {
+  .track-control:hover .track-pause {
     color: #9fbaff;
   }
 }
@@ -1392,11 +1392,6 @@ button.track-control:focus-visible {
   .lyrics-dialog[open]::backdrop { animation: none; }
 }
 
-/* Keep the close button usable while the track content changes. */
-.lyrics-dialog.is-switching .lyrics-player,
-.lyrics-dialog.is-switching .lyrics-text,
-.lyrics-dialog.is-switching .lyrics-follow { pointer-events: none; }
-
 @media (max-width: 420px) {
   .lyrics-tools { margin-left: 26px; margin-right: 26px; }
 }
@@ -1405,13 +1400,10 @@ button.track-control:focus-visible {
 .track-row.loading,
 .lyrics-player.loading { --track-title-color: #9fbaff; }
 .lyrics-player.loading h2,
-.track-row.loading .track-control,
-.lyrics-player.loading .lyrics-play { color: #9fbaff; }
+.track-row.loading .track-control { color: #9fbaff; }
 .playback-loader { display: none; }
-.track-row.loading .track-control > :not(.playback-loader),
-.lyrics-player.loading .lyrics-play > :not(.playback-loader) { display: none !important; }
-.track-row.loading .playback-loader,
-.lyrics-player.loading .playback-loader {
+.track-row.loading .track-control > :not(.playback-loader) { display: none !important; }
+.track-row.loading .playback-loader {
   display: grid;
   place-items: center;
   box-sizing: border-box;
@@ -1433,4 +1425,27 @@ button.track-control:focus-visible {
 @keyframes playback-loading { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) {
   .playback-loader::before { animation: none; }
+}
+
+/* Keep a stable pause/cancel button during track changes and buffering. */
+.lyrics-controls.loading .lyrics-play-icon { display: none; }
+.lyrics-controls.loading .lyrics-pause-icon { display: block; }
+.lyrics-controls.loading .lyrics-pause-icon circle { stroke-dasharray: 5 3; }
+
+/* Fixed playback modes between the caption and transport controls. */
+.lyrics-dialog-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+.lyrics-dialog-header .lyrics-caption { min-width: 0; white-space: nowrap; }
+.lyrics-modes { justify-self: center; }
+.lyrics-modes .album-playback { margin: 0; gap: 8px; }
+.lyrics-modes .album-modes { gap: 4px; }
+.lyrics-dialog-header .lyrics-controls { justify-self: end; }
+@media (max-width: 560px) {
+  .lyrics-dialog-header { grid-template-columns: minmax(0, 1fr) auto; row-gap: 8px; }
+  .lyrics-modes { grid-column: 1 / -1; grid-row: 2; }
+  .lyrics-dialog-header .lyrics-controls { grid-column: 2; grid-row: 1; }
 }
