@@ -1194,11 +1194,11 @@ button.track-control:focus-visible {
   cursor: pointer;
 }
 
-.lyrics-play svg { width: 24px; height: 24px; flex: none; fill: currentColor; }
+.lyrics-play svg { width: 22px; height: 22px; flex: none; fill: currentColor; }
 .lyrics-controls { display: flex; align-items: center; gap: 4px; flex: none; }
-.lyrics-controls .lyrics-play, .lyrics-nav { width: 33.7px; height: 40px; }
+.lyrics-controls .lyrics-play, .lyrics-nav { width: 34.7px; height: 40px; }
 /* Keep the layout spacing, but limit hit testing to the visible circles. */
-.lyrics-controls .lyrics-play { clip-path: circle(12px at 50% 50%); }
+.lyrics-controls .lyrics-play { clip-path: circle(11px at 50% 50%); }
 .lyrics-controls .lyrics-nav { clip-path: circle(11px at 50% 50%); }
 .lyrics-controls button:focus-visible { outline: none; }
 .lyrics-controls button:focus-visible svg circle { stroke: #f0f4ff; stroke-width: 2.4; }
@@ -1218,7 +1218,7 @@ button.track-control:focus-visible {
 @media (max-width: 420px) {
   .lyrics-dialog-header { gap: 4px; padding-right: 18px; }
   .lyrics-controls { gap: 0; }
-  .lyrics-controls .lyrics-play, .lyrics-nav { width: 34.9px; height: 44px; }
+  .lyrics-controls .lyrics-play, .lyrics-nav { width: 35.9px; height: 44px; }
   .lyrics-caption { min-width: 0; }
 }
 
@@ -1432,7 +1432,7 @@ button.track-control:focus-visible {
 .lyrics-controls.loading .lyrics-pause-icon { display: block; }
 .lyrics-controls.loading .lyrics-pause-icon circle { stroke-dasharray: 5 3; }
 
-/* Fixed playback modes between the caption and transport controls. */
+/* Playback modes centered, primary transport on the right. */
 .lyrics-dialog-header {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -1444,8 +1444,8 @@ button.track-control:focus-visible {
 .lyrics-modes .album-playback { margin: 0; gap: 8px; }
 .lyrics-modes .album-modes { gap: 4px; }
 .lyrics-dialog-header .lyrics-controls { justify-self: end; }
-@media (max-width: 560px) {
+@media (max-width: 560px), (pointer: coarse) {
   .lyrics-dialog-header { grid-template-columns: minmax(0, 1fr) auto; row-gap: 8px; }
-  .lyrics-modes { grid-column: 1 / -1; grid-row: 2; }
-  .lyrics-dialog-header .lyrics-controls { grid-column: 2; grid-row: 1; }
+  .lyrics-modes { grid-column: 1 / -1; grid-row: 2; justify-self: center; }
+  .lyrics-dialog-header .lyrics-controls { grid-column: 2; grid-row: 1; justify-self: end; }
 }
