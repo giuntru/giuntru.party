@@ -1209,7 +1209,9 @@ button.track-control:focus-visible {
 .lyrics-pause-icon, .lyrics-controls.playing .lyrics-play-icon { display: none; }
 .lyrics-controls.playing .lyrics-pause-icon { display: block; }
 .lyrics-controls .lyrics-play { color: rgba(207,224,255,.64); }
-.lyrics-controls .lyrics-play:hover, .lyrics-nav:not(:disabled):hover { color: #f0f4ff; }
+@media (hover: hover) and (pointer: fine) {
+  .lyrics-controls .lyrics-play:hover, .lyrics-nav:not(:disabled):hover { color: #f0f4ff; }
+}
 .lyrics-player .lyrics-eq { display: flex; flex: none; opacity: 1; }
 .lyrics-player .lyrics-eq i { background: var(--track-title-color); animation-play-state: paused; }
 .lyrics-player.playing:not(.loading):not(.meter-hidden) .lyrics-eq i { animation-play-state: running; }
